@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import {junienTiedot, liveTrains, trainLocations} from './components/StaticApis';
 
-export default function App() {
+
+const App=() => {
   const [type, setFish]=useState();
   const [size, setSize] = useState();
   const [fishList, addFish]=useState([]);
@@ -16,8 +18,6 @@ export default function App() {
     addFish(fishList=>[...fishList, {type: type, size: size}]);
   }
 
- 
-  
 
   return (
     <View style={styles.container}>
@@ -34,6 +34,14 @@ export default function App() {
         {fishList.map((item, index)=>{
           return <View style={styles.listItemStyle} key={index}><Text>{index+1}: {item.type} / {item.size} g</Text></View>
         })}
+      </View>
+      <View>
+      <Button style={styles.buttonStyle} title='Junien tiedot' 
+            onPress={junienTiedot}/>
+                  <Button style={styles.buttonStyle} title='Aktiivisten junien seuranta' 
+            onPress={() => liveTrains("HKI")}/>
+                  <Button style={styles.buttonStyle} title='Junan sijainti' 
+            onPress={trainLocations}/>
       </View>
     </View>
   );
@@ -86,3 +94,4 @@ const styles = StyleSheet.create({
   }
 });
 
+export default App;
