@@ -7,7 +7,10 @@ const junienTiedot=async()=>{
     try{
         let response=await fetch("https://rata.digitraffic.fi/api/v1/trains/");
         let json=await response.json();
-        console.log(json)
+        json.forEach(train => {
+            console.log(train.timeTableRows)
+        });
+        //console.log(json)
     }
     catch(error){
         console.log(error);
@@ -20,7 +23,8 @@ const junienTiedot=async()=>{
         try{
             let response=await fetch("https://rata.digitraffic.fi/api/v1/live-trains/station/"+ asema);
             let json=await response.json();
-            console.log(json);
+
+            //console.log(json);
         }
         catch(error){
             console.log(error)
@@ -32,11 +36,16 @@ const junienTiedot=async()=>{
         try{
             let response=await fetch("https://rata.digitraffic.fi/api/v1/train-locations/latest/");
             let json=await response.json();
+            json.forEach(train => {
+                console.log(train.location.coordinates)
+            });
             console.log(json);
         }
         catch(error){
             console.log(error)
         }
     }
+
+
 
 export {junienTiedot, liveTrains, trainLocations}; 

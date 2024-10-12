@@ -1,6 +1,15 @@
 import React, {useState} from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import {junienTiedot, liveTrains, trainLocations} from './components/StaticApis';
+import MapWithMarkers from './components/Map';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DropdownComponent from './components/DropDownView';
+
+const Stack = createNativeStackNavigator();
+
+
+
 
 
 const App=() => {
@@ -18,9 +27,51 @@ const App=() => {
     addFish(fishList=>[...fishList, {type: type, size: size}]);
   }
 
-
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Map" component={MapScreen} />
+        <Stack.Screen name="List" component={ListScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>)
+}
+const HomeScreen = (props) => {
+    return (
+      <View style={styles.container}><Text>This is home</Text>
+      <NavButtons params={props}></NavButtons></View>
+    )
+}
+
+const MapScreen = (props) => {
+  return (
+    <View style={styles.container}><MapWithMarkers/>
+    <NavButtons params={props}></NavButtons>
+    </View>
+    
+  )
+}
+
+const ListScreen = (props) => {
+  return (
+    <View style={styles.container}><DropdownComponent/>
+    <NavButtons params={props}></NavButtons>
+    </View>
+  )
+}
+
+const NavButtons=({params})=>{
+  return(
+    <View style={styles.navbuttonstyle}>
+      <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("Home")}><Text style={styles.textStyle}>Home</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("Map")}><Text style={styles.textStyle}>Map</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("List")}><Text style={styles.textStyle}>Stations</Text></TouchableOpacity>
+    </View>
+  );
+}
+
+  /* return (
+    <View style={styparamsles.container}>
       <View style={styles.formView}>
         <TextInput style={styles.inputStyle} placeholder="Fish breed..." value={type}
             onChangeText={fishInputHandler}/>
@@ -45,7 +96,7 @@ const App=() => {
       </View>
     </View>
   );
-}
+ */
 
 const styles = StyleSheet.create({
   listItemStyle:{
@@ -57,9 +108,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   formView:{
       flex:2,
@@ -70,6 +118,13 @@ const styles = StyleSheet.create({
       padding: 30,
       width:"100%",
   
+  },
+  textStyle: {
+    color: 'white'
+  },
+  flexGrow: {
+    flex:1,
+    flexGrow: 1
   },
   listStyle:{
     flex:8,
@@ -87,10 +142,23 @@ const styles = StyleSheet.create({
     padding:5,
     width:"50%",
   },
-  buttonStyle:{
-    margin:2,
-    padding:5,
-    width:"20%",
+
+  navbuttonstyle:{
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor:"#def",
+    alignItems:"center",
+    justifyContent:"space-around",  
+    backgroundColor: 'black',
+    position: 'absolute',
+    bottom: 0  
+  },
+  navBtn: {
+    height: 80,
+    flex:1,
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
