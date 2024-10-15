@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-  import { StyleSheet, View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+  import { StyleSheet, View, Text, FlatList } from 'react-native';
   import { Dropdown } from 'react-native-element-dropdown';
+  import AntDesign from 'react-native-vector-icons/AntDesign';
+  import {liveTrains} from './StaticApis';
+
 
 
   const data = [
-    { label: 'Item 1', value: '1' },
-    { label: 'Item 2', value: '2' },
+    { label: 'Helsinki', value: 'HKI' },
+    { label: 'Pori', value: 'PRI' },
     { label: 'Item 3', value: '3' },
     { label: 'Item 4', value: '4' },
     { label: 'Item 5', value: '5' },
@@ -16,24 +19,37 @@ import React, { useState } from 'react';
 
   const DropdownComponent = () => {
     const [value, setValue] = useState(null);
+    const [junaData, setJunaData] = useState([]);
 
-    const renderItem = item => {
-      return (
-        <View style={styles.item}>
-          <Text style={styles.textItem}>{item.label}</Text>
-          {item.value === value && (
-            <AntDesign
-              style={styles.icon}
-              color="black"
-              name="Safety"
-              size={20}
-            />
-          )}
+    useEffect(() => {
+      if (value){
+        liveTrains(value)
+        .then((data) => {
+          setJunaData(data);
+        })
+        .catch((error)=>{
+          console.log(error)
+        });
+      }
+    }, [value]);
+
+  // Render item for FlatList
+  const renderTrainItem = ({ item }) => (
+    <View style={styles.trainItem}>
+      <Text style={styles.trainText}>{item.trainType}{item.trainNumber}</Text>
+      {/* <Text style={styles.trainText}>Train Number: {item.trainNumber}</Text>
+      <Text style={styles.trainText}>Train Type: {item.trainType}</Text> */}
+      {item.timetable.map((time, index) => (
+        <View key={index}>
+          <Text>Track: {time.commercialTrack}</Text>
+          {/* <Text>Time: {time.actualTime}</Text> */}
         </View>
-      );
-    };
+      ))}
+    </View>
+  );
 
     return (
+      <View style = {styles.container}>
       <Dropdown
         style={styles.dropdown}
         placeholderStyle={styles.placeholderStyle}
@@ -48,16 +64,26 @@ import React, { useState } from 'react';
         placeholder="Select item"
         searchPlaceholder="Search..."
         value={value}
-        onChange={item => {
+        onChange={(item) => {
           setValue(item.value);
         }}
 
-        renderItem={renderItem}
+        // renderItem={renderItem}
       />
-    );
-  };
+      <FlatList
+          data={junaData}
+          renderItem={renderTrainItem}
+          keyExtractor={(item) => item.key}
+        />
+    </View>
+  )};
 
   const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: 50,
+      paddingHorizontal: 16,
+    },
     dropdown: {
       margin: 16,
       height: 50,

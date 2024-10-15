@@ -24,10 +24,36 @@ const junienTiedot=async()=>{
             let response=await fetch("https://rata.digitraffic.fi/api/v1/live-trains/station/"+ asema);
             let json=await response.json();
 
+            const junadata = json.map(train => ({
+                    key: train.trainNumber.toString(),
+                    trainNumber: train.trainNumber,
+                    trainType: train.trainType,
+                    timetable: train.timeTableRows.map(row => ({
+                        commercialTrack: row.commercialTrack
+                    }))                
+            }));
+
+            return junadata;
+
+            // json.forEach(train => {
+            //     const trainNumber = train.trainNumber;
+            //     const trainType = train.trainType;
+
+            //     train.timeTableRows.forEach(row => {
+            //         const commercialTrack = row.commercialTrack;
+            //         const actualTime = row.actualTime;
+
+            //         console.log(`train number: ${trainNumber}`);
+            //         console.log(`Train type: ${trainType}`);
+            //         console.log(`Commercial Track: ${commercialTrack}`);
+            //         console.log(`Actual Time: ${actualTime}`);
+            //     })
+            // })
             //console.log(json);
         }
         catch(error){
             console.log(error)
+            throw error;
         }
     }
 

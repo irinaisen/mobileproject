@@ -39,6 +39,14 @@ const App=() => {
 const HomeScreen = (props) => {
     return (
       <View style={styles.container}><Text>This is home</Text>
+        <View>
+      <   Button style={styles.buttonStyle} title='Junien tiedot' 
+            onPress={junienTiedot}/>
+                  <Button style={styles.buttonStyle} title='Aktiivisten junien seuranta' 
+            onPress={() => liveTrains("HKI")}/>
+                  <Button style={styles.buttonStyle} title='Junan sijainti' 
+            onPress={trainLocations}/>
+        </View>
       <NavButtons params={props}></NavButtons></View>
     )
 }
@@ -70,33 +78,26 @@ const NavButtons=({params})=>{
   );
 }
 
-  /* return (
-    <View style={styparamsles.container}>
-      <View style={styles.formView}>
-        <TextInput style={styles.inputStyle} placeholder="Fish breed..." value={type}
-            onChangeText={fishInputHandler}/>
-        <TextInput style={styles.inputStyle} placeholder="Fish weight..." value={size}
-            onChangeText={sizeInputHandler}/>
-        <Button style={styles.buttonStyle} title='Click!' 
-            onPress={addFishToList}/>
-      </View>
-      <View style={styles.listStyle}>
-        <Text>List</Text>
-        {fishList.map((item, index)=>{
-          return <View style={styles.listItemStyle} key={index}><Text>{index+1}: {item.type} / {item.size} g</Text></View>
-        })}
-      </View>
-      <View>
-      <Button style={styles.buttonStyle} title='Junien tiedot' 
-            onPress={junienTiedot}/>
-                  <Button style={styles.buttonStyle} title='Aktiivisten junien seuranta' 
-            onPress={() => liveTrains("HKI")}/>
-                  <Button style={styles.buttonStyle} title='Junan sijainti' 
-            onPress={trainLocations}/>
-      </View>
-    </View>
-  );
- */
+  // //  return (
+  //   <View style={styles.container}>
+  //     {/* <View style={styles.formView}>
+  //       <TextInput style={styles.inputStyle} placeholder="Fish breed..." value={type}
+  //           onChangeText={fishInputHandler}/>
+  //       <TextInput style={styles.inputStyle} placeholder="Fish weight..." value={size}
+  //           onChangeText={sizeInputHandler}/>
+  //       <Button style={styles.buttonStyle} title='Click!' 
+  //           onPress={addFishToList}/>
+  //     </View>
+  //     <View style={styles.listStyle}>
+  //       <Text>List</Text>
+  //       {fishList.map((item, index)=>{
+  //         return <View style={styles.listItemStyle} key={index}><Text>{index+1}: {item.type} / {item.size} g</Text></View>
+  //       })}
+  //     </View> */}
+
+  //   </View>
+  // // );
+ 
 
 const styles = StyleSheet.create({
   listItemStyle:{
