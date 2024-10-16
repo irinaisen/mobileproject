@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import {junienTiedot, liveTrains, trainLocations} from './components/StaticApis';
+import {junienTiedot, liveTrains, trainLocations, stations} from './components/StaticApis';
 import MapWithMarkers from './components/Map';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -46,6 +46,8 @@ const HomeScreen = (props) => {
             onPress={() => liveTrains("HKI")}/>
                   <Button style={styles.buttonStyle} title='Junan sijainti' 
             onPress={trainLocations}/>
+                  <Button style={styles.buttonStyle} title='Asemat' 
+            onPress={stations}/>
         </View>
       <NavButtons params={props}></NavButtons></View>
     )

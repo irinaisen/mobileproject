@@ -1,6 +1,23 @@
 import React, { useRef, useState } from "react";
 import {Text, Animated, PanResponder, StyleSheet, View } from "react-native";
 
+    // Asemien tiedot dropdown menuun
+    const stations=async()=>{
+        try{
+            let response=await fetch("https://rata.digitraffic.fi/api/v1/metadata/stations");
+            let json=await response.json();
+            const parsitutAsemat = json.map(station => ({
+                label: station.stationName,
+                value: station.stationShortCode
+            }))
+            console.log(parsitutAsemat)
+            return parsitutAsemat
+        }
+        catch(error){
+            console.log(error);
+        }
+        }
+
     // Junien tiedot (/trains)
 
 const junienTiedot=async()=>{
@@ -28,9 +45,12 @@ const junienTiedot=async()=>{
                     key: train.trainNumber.toString(),
                     trainNumber: train.trainNumber,
                     trainType: train.trainType,
-                    timetable: train.timeTableRows.map(row => ({
+                    timetable: train.timeTableRows
+                    .filter(row => row.stationShortCode === asema)  // Filter based on asema
+                    .map(row => ({
+                        type: row.type === "ARRIVAL" ? "Saapuva" : "Lähtevä",
                         commercialTrack: row.commercialTrack
-                    }))                
+                    }))
             }));
 
             return junadata;
@@ -74,4 +94,4 @@ const junienTiedot=async()=>{
 
 
 
-export {junienTiedot, liveTrains, trainLocations}; 
+export {junienTiedot, liveTrains, trainLocations, stations}; 

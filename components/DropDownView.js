@@ -2,30 +2,33 @@ import React, { useState, useEffect } from 'react';
   import { StyleSheet, View, Text, FlatList } from 'react-native';
   import { Dropdown } from 'react-native-element-dropdown';
   import AntDesign from 'react-native-vector-icons/AntDesign';
-  import {liveTrains} from './StaticApis';
+  import {liveTrains, stations} from './StaticApis';
 
-
-
-  const data = [
-    { label: 'Helsinki', value: 'HKI' },
-    { label: 'Pori', value: 'PRI' },
-    { label: 'Item 3', value: '3' },
-    { label: 'Item 4', value: '4' },
-    { label: 'Item 5', value: '5' },
-    { label: 'Item 6', value: '6' },
-    { label: 'Item 7', value: '7' },
-    { label: 'Item 8', value: '8' },
-  ];
 
   const DropdownComponent = () => {
-    const [value, setValue] = useState(null);
-    const [junaData, setJunaData] = useState([]);
+    const [value, setValue] = useState(null); // Tallennetaan valittu dropdown valikon arvo
+    const [junaData, setJunaData] = useState([]); // Tallennetaan junatiedot flatlistiin.
+    const [asemaDataValikkoon, setAsemaData] = useState([]); // Tallennetaan asematiedot dropdown valikkoa varten
 
+    // Hakee asematiedot dropdown valikkoon.
+    useEffect(() => {
+      const asemat = async () => {
+        try {
+          const asemalista = await stations(); // Funktio palauttaa jokaisen aseman nimen ja lyhenteen
+          setAsemaData(asemalista); 
+        } catch(error){
+          console.log(error);
+        }
+      };
+      asemat(); // Aloittaa asemahaun heti kun käyttäjä navigoi oikealle sivulle äpissä. 
+    }, []);
+
+    // Hakee junatiedot valitulta asemalta
     useEffect(() => {
       if (value){
-        liveTrains(value)
+        liveTrains(value) // funktio saa parametriksi dropdownista valitun aseman lyhenteen
         .then((data) => {
-          setJunaData(data);
+          setJunaData(data); // Päivittää junatiedot muuttujaan
         })
         .catch((error)=>{
           console.log(error)
@@ -33,16 +36,15 @@ import React, { useState, useEffect } from 'react';
       }
     }, [value]);
 
-  // Render item for FlatList
+  // Flatlistin sisältö
   const renderTrainItem = ({ item }) => (
     <View style={styles.trainItem}>
       <Text style={styles.trainText}>{item.trainType}{item.trainNumber}</Text>
-      {/* <Text style={styles.trainText}>Train Number: {item.trainNumber}</Text>
-      <Text style={styles.trainText}>Train Type: {item.trainType}</Text> */}
       {item.timetable.map((time, index) => (
         <View key={index}>
-          <Text>Track: {time.commercialTrack}</Text>
-          {/* <Text>Time: {time.actualTime}</Text> */}
+          <Text>{time.type}</Text>
+          <Text>Raide: {time.commercialTrack}</Text>
+          <Text>-----------------------------</Text>
         </View>
       ))}
     </View>
@@ -56,11 +58,11 @@ import React, { useState, useEffect } from 'react';
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
-        data={data}
+        data={asemaDataValikkoon}
         search
         maxHeight={300}
-        labelField="label"
-        valueField="value"
+        labelField="label" // Jos muuttaa niin pitää muuttaa myös stations funktioon!
+        valueField="value" // Jos muuttaa niin pitää muuttaa myös stations funktioon!
         placeholder="Select item"
         searchPlaceholder="Search..."
         value={value}
