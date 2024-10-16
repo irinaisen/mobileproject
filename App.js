@@ -5,6 +5,12 @@ import MapWithMarkers from './components/Map';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropdownComponent from './components/DropDownView';
+import styles from './views/styles'
+
+import {AppRegistry} from 'react-native';
+import {name as appName} from './app.json';
+
+AppRegistry.registerComponent(appName, () => App);
 
 const Stack = createNativeStackNavigator();
 
@@ -38,15 +44,24 @@ const App=() => {
 }
 const HomeScreen = (props) => {
     return (
-      <View style={styles.container}><Text>This is home</Text>
-        <View>
+      <View style={styles.container}><Text style={styles.textStyle}>This is home</Text>
+        <View >
       <   Button style={styles.buttonStyle} title='Junien tiedot' 
             onPress={junienTiedot}/>
-                  <Button style={styles.buttonStyle} title='Aktiivisten junien seuranta' 
+          <Button style={styles.buttonStyle} title='Aktiivisten junien seuranta' 
             onPress={() => liveTrains("HKI")}/>
-                  <Button style={styles.buttonStyle} title='Junan sijainti' 
+          <Button style={styles.buttonStyle} title='Junan sijainti' 
             onPress={trainLocations}/>
         </View>
+        <View style={styles.container}>
+          <Text style={styles.textStyle}>Saapuvat junat</Text>
+         
+          <Text style={styles.textStyle}> Aika</Text>
+          <Text style={styles.textStyle}> Juna</Text>
+          <Text style={styles.textStyle}> Raide</Text>
+      
+        </View>
+       
       <NavButtons params={props}></NavButtons></View>
     )
 }
@@ -99,68 +114,5 @@ const NavButtons=({params})=>{
   // // );
  
 
-const styles = StyleSheet.create({
-  listItemStyle:{
-    borderWidth:1,
-    borderColor:"blue",
-    padding:5,
-    backgroundColor:"#abc",
-    width:"80%",
-  },
-  container: {
-    flex: 1,
-  },
-  formView:{
-      flex:2,
-      flexDirection:"column",
-      backgroundColor:"#def",
-      alignItems:"center",
-      justifyContent:"space-around",
-      padding: 30,
-      width:"100%",
-  
-  },
-  textStyle: {
-    color: 'white'
-  },
-  flexGrow: {
-    flex:1,
-    flexGrow: 1
-  },
-  listStyle:{
-    flex:8,
-    alignItems:"center",
-    backgroundColor:"#eac",
-    borderColor:"green",
-    borderWidth:2,
-    width:"100%",
-  },
-  inputStyle:{
-    backgroundColor:"#abc",
-    borderColor:"black",
-    borderWidth:2,
-    margin:2,
-    padding:5,
-    width:"50%",
-  },
-
-  navbuttonstyle:{
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor:"#def",
-    alignItems:"center",
-    justifyContent:"space-around",  
-    backgroundColor: 'black',
-    position: 'absolute',
-    bottom: 0  
-  },
-  navBtn: {
-    height: 80,
-    flex:1,
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
 
 export default App;
