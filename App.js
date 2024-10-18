@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
-import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList } from 'react-native';
 import {junienTiedot, liveTrains, trainLocations, stations} from './components/StaticApis';
 import MapWithMarkers from './components/Map';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropdownComponent from './components/DropDownView';
+import {init} from './database/db';
 import styles from './views/styles'
+import HomeScreen from './components/HomeScreen';
+import NavButtons from './components/NavButtons';
 
 import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
@@ -15,54 +18,37 @@ AppRegistry.registerComponent(appName, () => App);
 const Stack = createNativeStackNavigator();
 
 
+init()
+.then(()=>{
+    console.log('Database creation succeeded!');
+}).catch((err)=>{
+  console.log('Database IS NOT initialized! '+err);
+});
 
 
 
 const App=() => {
-  const [type, setFish]=useState();
-  const [size, setSize] = useState();
-  const [fishList, addFish]=useState([]);
 
-  const fishInputHandler=(enteredText)=>{
-    setFish(enteredText);
-  }
-  const sizeInputHandler = enteredText => {
-    setSize(enteredText);
-  };
-  const addFishToList=()=>{
-    addFish(fishList=>[...fishList, {type: type, size: size}]);
-  }
+
 
   return (
-    <NavigationContainer>
+
+  <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen1} />
         <Stack.Screen name="Map" component={MapScreen} />
         <Stack.Screen name="List" component={ListScreen} />
       </Stack.Navigator>
-    </NavigationContainer>)
+    </NavigationContainer>
+   )
 }
-const HomeScreen = (props) => {
+const HomeScreen1 = (props) => {
     return (
-      <View style={styles.container}><Text style={styles.textStyle}>This is home</Text>
-        <View >
-      <   Button style={styles.buttonStyle} title='Junien tiedot' 
-            onPress={junienTiedot}/>
-          <Button style={styles.buttonStyle} title='Aktiivisten junien seuranta' 
-            onPress={() => liveTrains("HKI")}/>
-          <Button style={styles.buttonStyle} title='Junan sijainti' 
-            onPress={trainLocations}/>
-        </View>
-        <View style={styles.container}>
-          <Text style={styles.textStyle}>Saapuvat junat</Text>
-         
-          <Text style={styles.textStyle}> Aika</Text>
-          <Text style={styles.textStyle}> Juna</Text>
-          <Text style={styles.textStyle}> Raide</Text>
       
-        </View>
-       
-      <NavButtons params={props}></NavButtons></View>
+      <View style={styles.container}><HomeScreen/>
+      <NavButtons params={props}></NavButtons>
+      </View>
+
     )
 }
 
@@ -83,7 +69,7 @@ const ListScreen = (props) => {
   )
 }
 
-const NavButtons=({params})=>{
+/*const NavButtons=({params})=>{
   return(
     <View style={styles.navbuttonstyle}>
       <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("Home")}><Text style={styles.textStyle}>Home</Text></TouchableOpacity>
@@ -93,25 +79,8 @@ const NavButtons=({params})=>{
   );
 }
 
-  // //  return (
-  //   <View style={styles.container}>
-  //     {/* <View style={styles.formView}>
-  //       <TextInput style={styles.inputStyle} placeholder="Fish breed..." value={type}
-  //           onChangeText={fishInputHandler}/>
-  //       <TextInput style={styles.inputStyle} placeholder="Fish weight..." value={size}
-  //           onChangeText={sizeInputHandler}/>
-  //       <Button style={styles.buttonStyle} title='Click!' 
-  //           onPress={addFishToList}/>
-  //     </View>
-  //     <View style={styles.listStyle}>
-  //       <Text>List</Text>
-  //       {fishList.map((item, index)=>{
-  //         return <View style={styles.listItemStyle} key={index}><Text>{index+1}: {item.type} / {item.size} g</Text></View>
-  //       })}
-  //     </View> */}
 
-  //   </View>
-  // // );
+*/
  
 
 
