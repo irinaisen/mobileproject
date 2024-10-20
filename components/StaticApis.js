@@ -39,17 +39,40 @@ const junienTiedot=async()=>{
             let response=await fetch("https://rata.digitraffic.fi/api/v1/live-trains/station/"+ asema);
             let json=await response.json();
 
-            const junadata = json.map(train => ({
+            // Filtteröi pois "turhat" junat. Esimerkiksi rahtijunat ym. jotka ei liity matkustamiseen
+            const suodataJunat = json.filter(train =>
+                train.trainCategory === "Long-distance" || train.trainCategory === "Commuter" || train.trainCategory === "Shunting"
+            );
+
+            // Suodatetuista junista luodaan haluttu data ja palautetaan flatlistiin
+            const junadata = suodataJunat.map(train => ({
                     key: train.trainNumber.toString(),
                     trainNumber: train.trainNumber,
                     trainType: train.trainType,
                     timetable: train.timeTableRows
-                    .filter(row => row.stationShortCode === asema)  // Filter based on asema
-                    .map(row => ({
-                        type: row.type === "ARRIVAL" ? "Saapuva" : "Lähtevä",
-                        commercialTrack: row.commercialTrack
-                    }))
-            }));
+                        .filter(row => row.stationShortCode === asema)  // Filter based on asema
+                        .map(row => {
+                            let status = "";
+
+                            if (typeof row.differenceInMinutes === "number"){
+                                if (row.differenceInMinutes > 0){
+                                    status = `Juna on myöhässä ${row.differenceInMinutes} minuuttia`
+                                } else if (row.differenceInMinutes === 0){
+                                    status = `Juna on aikataulussa`
+                                } else {
+                                    status = `Juna on etuajassa ${Math.abs(row.differenceInMinutes)} minuuttia`
+                                }
+                            } else {
+                                status = null;
+                            }
+                            return{
+                            type: row.type === "ARRIVAL" ? "Saapuva" : "Lähtevä",
+                            commercialTrack: row.commercialTrack,
+                            scheduledTime: formatTime(row.scheduledTime),
+                            status: status
+                            };
+                        })
+                    }));
 
             return junadata;
 
@@ -89,6 +112,20 @@ const junienTiedot=async()=>{
             console.log(error)
         }
     }
+
+    const formatTime = (aika) => {
+        const date = new Date(aika);
+    
+        // const day = String(date.getDate()).padStart(2, '0');
+        // const month = String(date.getMonth() + 1).padStart(2, '0');
+        // const year = date.getFullYear();
+
+        date.setHours(date.getHours() + 3);
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+    
+        return `${hours}:${minutes}`;
+      };
 
 
 
