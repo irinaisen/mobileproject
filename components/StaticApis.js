@@ -19,7 +19,6 @@ import {Text, Animated, PanResponder, StyleSheet, View } from "react-native";
         }
 
     // Junien tiedot (/trains)
-
 const junienTiedot=async()=>{
     try{
         let response=await fetch("https://rata.digitraffic.fi/api/v1/trains/");
@@ -35,7 +34,6 @@ const junienTiedot=async()=>{
     }
 
     // Aktiivisten junien seuranta (/live-trains)
-
     const liveTrains=async(asema)=>{
         try{
             let response=await fetch("https://rata.digitraffic.fi/api/v1/live-trains/station/"+ asema);

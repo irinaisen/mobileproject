@@ -42,9 +42,9 @@ import React, { useState, useEffect } from 'react';
       <Text style={styles.trainText}>{item.trainType}{item.trainNumber}</Text>
       {item.timetable.map((time, index) => (
         <View key={index}>
-          <Text>{time.type}</Text>
-          <Text>Raide: {time.commercialTrack}</Text>
-          <Text>-----------------------------</Text>
+          <Text style={styles.trainText}>{time.type}</Text>
+          <Text style={styles.trainText}>Raide: {time.commercialTrack}</Text>
+          <Text style={styles.trainText}>-----------------------------</Text>
         </View>
       ))}
     </View>
@@ -70,12 +70,11 @@ import React, { useState, useEffect } from 'react';
           setValue(item.value);
         }}
 
-        // renderItem={renderItem}
       />
       <FlatList
           data={junaData}
           renderItem={renderTrainItem}
-          keyExtractor={(item) => item.key}
+          keyExtractor={(item, index) => `${item.trainNumber}-${index}`}
         />
     </View>
   )};
@@ -129,6 +128,9 @@ import React, { useState, useEffect } from 'react';
       height: 40,
       fontSize: 16,
     },
+    trainText: {
+      color: 'white'
+    }
   });
 
 
