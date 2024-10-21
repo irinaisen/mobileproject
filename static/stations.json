@@ -1,0 +1,1923 @@
+{
+    "data": {
+      "stations": [
+        {
+          "location": [
+            25.101494,
+            60.456863
+          ],
+          "name": "Ainola",
+          "shortCode": "AIN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.600437,
+            62.617769
+          ],
+          "name": "Alavus",
+          "shortCode": "ALV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.956191,
+            60.30435
+          ],
+          "name": "Aviapolis",
+          "shortCode": "AVP",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.488607,
+            59.990199
+          ],
+          "name": "Dragsvik",
+          "shortCode": "DRA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.191479,
+            62.540677
+          ],
+          "name": "Eläinpuisto-Zoo",
+          "shortCode": "EPZ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            30.141691,
+            62.806375
+          ],
+          "name": "Eno",
+          "shortCode": "ENO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.655992,
+            60.205067
+          ],
+          "name": "Espoo",
+          "shortCode": "EPO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.33434,
+            63.754515
+          ],
+          "name": "Haapajärvi",
+          "shortCode": "HPJ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.455067,
+            62.246476
+          ],
+          "name": "Haapamäki",
+          "shortCode": "HPK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.13382,
+            60.496261
+          ],
+          "name": "Haarajoki",
+          "shortCode": "HAA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.554663,
+            60.408207
+          ],
+          "name": "Haksi",
+          "shortCode": "HSI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.478116,
+            62.302807
+          ],
+          "name": "Hankasalmi",
+          "shortCode": "HKS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.968291,
+            59.826865
+          ],
+          "name": "Hanko asema",
+          "shortCode": "HNK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.988361,
+            59.830141
+          ],
+          "name": "Hanko-Pohjoinen",
+          "shortCode": "HKP",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.133261,
+            61.309689
+          ],
+          "name": "Harjavalta",
+          "shortCode": "HVA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.643419,
+            62.382542
+          ],
+          "name": "Heinävesi",
+          "shortCode": "HNV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.941249,
+            60.172097
+          ],
+          "name": "Helsinki asema",
+          "shortCode": "HKI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.494389,
+            60.799132
+          ],
+          "name": "Henna",
+          "shortCode": "HNN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.475624,
+            60.896944
+          ],
+          "name": "Herrala",
+          "shortCode": "HR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.049104,
+            60.303081
+          ],
+          "name": "Hiekkaharju",
+          "shortCode": "HKH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.919201,
+            60.752588
+          ],
+          "name": "Hikiä",
+          "shortCode": "HK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.789163,
+            61.193088
+          ],
+          "name": "Hillosensalmi",
+          "shortCode": "HLS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.477951,
+            60.399764
+          ],
+          "name": "Hinthaara",
+          "shortCode": "HH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.362536,
+            60.919507
+          ],
+          "name": "Humppila",
+          "shortCode": "HP",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.893523,
+            60.21835
+          ],
+          "name": "Huopalahti",
+          "shortCode": "HPL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.857481,
+            60.63126
+          ],
+          "name": "Hyvinkää asema",
+          "shortCode": "HY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.478851,
+            61.002368
+          ],
+          "name": "Hämeenlinna",
+          "shortCode": "HL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.876631,
+            63.234321
+          ],
+          "name": "Härmä",
+          "shortCode": "HM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.44413,
+            63.454874
+          ],
+          "name": "Höljäkkä",
+          "shortCode": "HÖL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.201109,
+            63.560099
+          ],
+          "name": "Iisalmi",
+          "shortCode": "ILM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.140789,
+            61.090616
+          ],
+          "name": "Iittala",
+          "shortCode": "ITA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.920636,
+            60.208134
+          ],
+          "name": "Ilmala asema",
+          "shortCode": "ILA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.776017,
+            61.195914
+          ],
+          "name": "Imatra asema",
+          "shortCode": "IMR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.839178,
+            60.696674
+          ],
+          "name": "Inkeroinen",
+          "shortCode": "IKR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.93585,
+            60.061511
+          ],
+          "name": "Inkoo",
+          "shortCode": "IKO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.394797,
+            62.951072
+          ],
+          "name": "Isokyrö",
+          "shortCode": "IKY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.777033,
+            62.599536
+          ],
+          "name": "Joensuu asema",
+          "shortCode": "JNS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.970682,
+            60.552798
+          ],
+          "name": "Jokela",
+          "shortCode": "JK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.512776,
+            60.137885
+          ],
+          "name": "Jorvas",
+          "shortCode": "JRS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.488252,
+            61.120291
+          ],
+          "name": "Joutseno",
+          "shortCode": "JTS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.365046,
+            61.796788
+          ],
+          "name": "Juupajoki",
+          "shortCode": "JJ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.754984,
+            62.241455
+          ],
+          "name": "Jyväskylä",
+          "shortCode": "JY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.173294,
+            61.865627
+          ],
+          "name": "Jämsä",
+          "shortCode": "JÄS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.274659,
+            60.867325
+          ],
+          "name": "Järvelä",
+          "shortCode": "JR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.090796,
+            60.473684
+          ],
+          "name": "Järvenpää asema",
+          "shortCode": "JP",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.738374,
+            64.219716
+          ],
+          "name": "Kajaani",
+          "shortCode": "KAJ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.877004,
+            60.239562
+          ],
+          "name": "Kannelmäki",
+          "shortCode": "KAN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.915361,
+            63.898425
+          ],
+          "name": "Kannus",
+          "shortCode": "KNS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.66126,
+            60.068724
+          ],
+          "name": "Karjaa",
+          "shortCode": "KR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.049129,
+            61.443314
+          ],
+          "name": "Karkku",
+          "shortCode": "KRU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.0353,
+            63.099643
+          ],
+          "name": "Kauhava",
+          "shortCode": "KHA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.600354,
+            60.189456
+          ],
+          "name": "Kauklahti asema",
+          "shortCode": "KLH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.730884,
+            60.211939
+          ],
+          "name": "Kauniainen",
+          "shortCode": "KNI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.329366,
+            60.885347
+          ],
+          "name": "Kausala",
+          "shortCode": "KA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.574339,
+            65.736749
+          ],
+          "name": "Kemi asema",
+          "shortCode": "KEM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.403715,
+            66.724273
+          ],
+          "name": "Kemijärvi",
+          "shortCode": "KJÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.514546,
+            64.912904
+          ],
+          "name": "Kempele",
+          "shortCode": "KML",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.75564,
+            60.216573
+          ],
+          "name": "Kera",
+          "shortCode": "KEA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.106028,
+            60.404297
+          ],
+          "name": "Kerava asema",
+          "shortCode": "KE",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.114053,
+            61.861412
+          ],
+          "name": "Kerimäki",
+          "shortCode": "KIÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.802865,
+            61.887467
+          ],
+          "name": "Kesälahti",
+          "shortCode": "KTI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.707325,
+            62.255309
+          ],
+          "name": "Keuruu",
+          "shortCode": "KEU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.613204,
+            60.406719
+          ],
+          "name": "Kiiala",
+          "shortCode": "KIA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.782393,
+            60.217939
+          ],
+          "name": "Kilo",
+          "shortCode": "KIL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.438814,
+            60.119648
+          ],
+          "name": "Kirkkonummi",
+          "shortCode": "KKN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            30.049014,
+            62.142774
+          ],
+          "name": "Kitee",
+          "shortCode": "KIT",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.611334,
+            63.640907
+          ],
+          "name": "Kiuruvesi",
+          "shortCode": "KRV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.846938,
+            60.314607
+          ],
+          "name": "Kivistö",
+          "shortCode": "KTÖ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.287006,
+            63.514758
+          ],
+          "name": "Kohtavaara",
+          "shortCode": "KOH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.701273,
+            60.207144
+          ],
+          "name": "Koivuhovi",
+          "shortCode": "KVH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.059797,
+            60.323284
+          ],
+          "name": "Koivukylä",
+          "shortCode": "KVY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.30335,
+            61.254199
+          ],
+          "name": "Kokemäki",
+          "shortCode": "KKI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.131096,
+            63.834429
+          ],
+          "name": "Kokkola",
+          "shortCode": "KOK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.836254,
+            67.348706
+          ],
+          "name": "Kolari",
+          "shortCode": "KLI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.507444,
+            62.128049
+          ],
+          "name": "Kolho",
+          "shortCode": "KLO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.114694,
+            64.338219
+          ],
+          "name": "Kontiomäki",
+          "shortCode": "KON",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.60131,
+            60.847067
+          ],
+          "name": "Koria",
+          "shortCode": "KRA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.078507,
+            60.35129
+          ],
+          "name": "Korso",
+          "shortCode": "KRS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.928611,
+            60.464388
+          ],
+          "name": "Kotka asema",
+          "shortCode": "KTA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.934952,
+            60.466492
+          ],
+          "name": "Kotkan satama",
+          "shortCode": "KTS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.704588,
+            60.865613
+          ],
+          "name": "Kouvola asema",
+          "shortCode": "KV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.679581,
+            62.897218
+          ],
+          "name": "Kuopio asema",
+          "shortCode": "KUO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.297114,
+            60.450274
+          ],
+          "name": "Kupittaa",
+          "shortCode": "KUT",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.75243,
+            63.361403
+          ],
+          "name": "Kylänlahti",
+          "shortCode": "KYN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.90714,
+            60.539229
+          ],
+          "name": "Kymi",
+          "shortCode": "KY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.895812,
+            60.508258
+          ],
+          "name": "Kyminlinna",
+          "shortCode": "KLN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.946034,
+            60.22017
+          ],
+          "name": "Käpylä",
+          "shortCode": "KÄP",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.657397,
+            60.97647
+          ],
+          "name": "Lahti",
+          "shortCode": "LH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.003444,
+            62.990138
+          ],
+          "name": "Laihia",
+          "shortCode": "LAI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.393552,
+            63.360666
+          ],
+          "name": "Lapinlahti",
+          "shortCode": "LNA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.195304,
+            61.047973
+          ],
+          "name": "Lappeenranta",
+          "shortCode": "LR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.17423,
+            60.848954
+          ],
+          "name": "Lappila",
+          "shortCode": "LAA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.236919,
+            59.904082
+          ],
+          "name": "Lappohja",
+          "shortCode": "LPO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.015112,
+            62.971338
+          ],
+          "name": "Lapua",
+          "shortCode": "LPA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.039419,
+            60.322641
+          ],
+          "name": "Leinelä",
+          "shortCode": "LNÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.755094,
+            61.314233
+          ],
+          "name": "Lempäälä",
+          "shortCode": "LPÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.968343,
+            60.315732
+          ],
+          "name": "Lentoasema",
+          "shortCode": "LEN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.813541,
+            60.21948
+          ],
+          "name": "Leppävaara",
+          "shortCode": "LPV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            30.016394,
+            63.318195
+          ],
+          "name": "Lieksa",
+          "shortCode": "LIS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.195893,
+            62.259872
+          ],
+          "name": "Lievestuore",
+          "shortCode": "LVT",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.060408,
+            60.847378
+          ],
+          "name": "Loimaa",
+          "shortCode": "LM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.853299,
+            60.270798
+          ],
+          "name": "Louhela",
+          "shortCode": "LOH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.322269,
+            61.800548
+          ],
+          "name": "Lusto",
+          "shortCode": "LUS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.011468,
+            60.25166
+          ],
+          "name": "Malmi",
+          "shortCode": "ML",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.861283,
+            60.249316
+          ],
+          "name": "Malminkartano",
+          "shortCode": "MLO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.852604,
+            60.27808
+          ],
+          "name": "Martinlaakso",
+          "shortCode": "MRL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.539106,
+            60.158661
+          ],
+          "name": "Masala",
+          "shortCode": "MAS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.277969,
+            61.687818
+          ],
+          "name": "Mikkeli",
+          "shortCode": "MI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.687235,
+            66.617923
+          ],
+          "name": "Misi",
+          "shortCode": "MIS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.075141,
+            60.821177
+          ],
+          "name": "Mommila",
+          "shortCode": "MLA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            37.655278,
+            55.777111
+          ],
+          "name": "Moskova_(Leningradski)",
+          "shortCode": "MVA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.991997,
+            64.805398
+          ],
+          "name": "Muhos",
+          "shortCode": "MH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.37511,
+            66.370875
+          ],
+          "name": "Muurola",
+          "shortCode": "MUL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.78669,
+            60.771013
+          ],
+          "name": "Myllykoski",
+          "shortCode": "MKI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.280965,
+            62.524753
+          ],
+          "name": "Myllymäki",
+          "shortCode": "MY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.854751,
+            60.261327
+          ],
+          "name": "Myyrmäki",
+          "shortCode": "MYR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.842976,
+            60.22131
+          ],
+          "name": "Mäkkylä",
+          "shortCode": "MÄK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.307475,
+            60.647258
+          ],
+          "name": "Mäntsälä",
+          "shortCode": "MLÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.881746,
+            61.421104
+          ],
+          "name": "Mäntyharju",
+          "shortCode": "MR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.935467,
+            60.935567
+          ],
+          "name": "Nastola",
+          "shortCode": "NSL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.26654,
+            60.38237
+          ],
+          "name": "Nikkilä",
+          "shortCode": "NLÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.960768,
+            63.936389
+          ],
+          "name": "Nivala",
+          "shortCode": "NVL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.49917,
+            61.481059
+          ],
+          "name": "Nokia",
+          "shortCode": "NOA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.137234,
+            63.541078
+          ],
+          "name": "Nurmes",
+          "shortCode": "NRM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.021316,
+            60.789806
+          ],
+          "name": "Oitti",
+          "shortCode": "OI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.368047,
+            61.650095
+          ],
+          "name": "Orivesi",
+          "shortCode": "OV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.369838,
+            61.673906
+          ],
+          "name": "Orivesi keskusta",
+          "shortCode": "OVK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.82098,
+            64.269509
+          ],
+          "name": "Oulainen",
+          "shortCode": "OU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.486121,
+            65.012409
+          ],
+          "name": "Oulu asema",
+          "shortCode": "OL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.967676,
+            60.229
+          ],
+          "name": "Oulunkylä",
+          "shortCode": "OLK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.919345,
+            60.475938
+          ],
+          "name": "Paimenportti",
+          "shortCode": "PTI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.82218,
+            64.40061
+          ],
+          "name": "Paltamo",
+          "shortCode": "PTO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.502884,
+            61.55855
+          ],
+          "name": "Parikkala",
+          "shortCode": "PAR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.078439,
+            62.051967
+          ],
+          "name": "Parkano",
+          "shortCode": "PKO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.366497,
+            61.049922
+          ],
+          "name": "Parola",
+          "shortCode": "PRL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.933521,
+            60.198689
+          ],
+          "name": "Pasila asema",
+          "shortCode": "PSL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.933169,
+            60.208303
+          ],
+          "name": "Pasila autojuna-asema",
+          "shortCode": "PAU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.993374,
+            66.78466
+          ],
+          "name": "Pello",
+          "shortCode": "PEL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.189337,
+            62.256974
+          ],
+          "name": "Petäjävesi",
+          "shortCode": "PVI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.16753,
+            62.301253
+          ],
+          "name": "Pieksämäki asema",
+          "shortCode": "PM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            30.356308,
+            59.957131
+          ],
+          "name": "Pietari_(Finljandski)",
+          "shortCode": "PTR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            30.443925,
+            59.9311424
+          ],
+          "name": "Pietari_(Ladozhski)",
+          "shortCode": "PTL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.395608,
+            62.346234
+          ],
+          "name": "Pihlajavesi",
+          "shortCode": "PH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.859649,
+            60.223412
+          ],
+          "name": "Pitäjänmäki",
+          "shortCode": "PJM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.883319,
+            60.230156
+          ],
+          "name": "Pohjois-Haaga",
+          "shortCode": "POH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            21.786607,
+            61.477212
+          ],
+          "name": "Pori",
+          "shortCode": "PRI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.648462,
+            60.396602
+          ],
+          "name": "Porvoo",
+          "shortCode": "PRV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.036683,
+            60.276313
+          ],
+          "name": "Puistola",
+          "shortCode": "PLA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.993288,
+            60.242216
+          ],
+          "name": "Pukinmäki",
+          "shortCode": "PMK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.382354,
+            61.761151
+          ],
+          "name": "Punkaharju",
+          "shortCode": "PUN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.050225,
+            60.500329
+          ],
+          "name": "Purola",
+          "shortCode": "PUR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.982615,
+            63.682935
+          ],
+          "name": "Pyhäsalmi",
+          "shortCode": "PHÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.790363,
+            63.595382
+          ],
+          "name": "Pännäinen",
+          "shortCode": "PNÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.924534,
+            61.862291
+          ],
+          "name": "Pääskylahti",
+          "shortCode": "PKY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.068666,
+            60.332871
+          ],
+          "name": "Rekola",
+          "shortCode": "RKL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.294294,
+            61.803308
+          ],
+          "name": "Retretti",
+          "shortCode": "REE",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.781241,
+            60.736078
+          ],
+          "name": "Riihimäki asema",
+          "shortCode": "RI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.705329,
+            66.497675
+          ],
+          "name": "Rovaniemi",
+          "shortCode": "ROI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.886487,
+            63.602052
+          ],
+          "name": "Runni",
+          "shortCode": "RNN",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.0982,
+            64.660373
+          ],
+          "name": "Ruukki",
+          "shortCode": "RKI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.758186,
+            60.818048
+          ],
+          "name": "Ryttylä",
+          "shortCode": "RY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.121448,
+            60.384777
+          ],
+          "name": "Salo",
+          "shortCode": "SLO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.121052,
+            59.875008
+          ],
+          "name": "Santala",
+          "shortCode": "STA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.065568,
+            60.487305
+          ],
+          "name": "Saunakallio",
+          "shortCode": "SAU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.097803,
+            60.381296
+          ],
+          "name": "Savio",
+          "shortCode": "SAV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.888266,
+            61.8689
+          ],
+          "name": "Savonlinna asema",
+          "shortCode": "SL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.844217,
+            62.792016
+          ],
+          "name": "Seinäjoki asema",
+          "shortCode": "SK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.666561,
+            63.074953
+          ],
+          "name": "Siilinjärvi asema",
+          "shortCode": "SIJ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.371696,
+            61.424787
+          ],
+          "name": "Simpele",
+          "shortCode": "SPL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.221671,
+            60.140648
+          ],
+          "name": "Siuntio",
+          "shortCode": "STI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.312403,
+            59.926668
+          ],
+          "name": "Skogby",
+          "shortCode": "SGY",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.422313,
+            63.864618
+          ],
+          "name": "Sukeva",
+          "shortCode": "SKV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.124495,
+            62.623707
+          ],
+          "name": "Suonenjoki",
+          "shortCode": "SNJ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.443501,
+            59.979553
+          ],
+          "name": "Tammisaari",
+          "shortCode": "TMS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.773454,
+            61.498236
+          ],
+          "name": "Tampere asema",
+          "shortCode": "TPE",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.030033,
+            60.2639
+          ],
+          "name": "Tapanila",
+          "shortCode": "TNA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.954279,
+            60.572959
+          ],
+          "name": "Tavastila",
+          "shortCode": "TSL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.171462,
+            63.000773
+          ],
+          "name": "Tervajoki",
+          "shortCode": "TK",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.772291,
+            66.081811
+          ],
+          "name": "Tervola",
+          "shortCode": "TRV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.630271,
+            61.503363
+          ],
+          "name": "Tesoma",
+          "shortCode": "TSO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.044055,
+            60.292166
+          ],
+          "name": "Tikkurila asema",
+          "shortCode": "TKL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.860905,
+            61.170611
+          ],
+          "name": "Toijala",
+          "shortCode": "TL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.472724,
+            60.118558
+          ],
+          "name": "Tolsa",
+          "shortCode": "TOL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.18508,
+            65.850823
+          ],
+          "name": "Tornio-Itäinen",
+          "shortCode": "TRI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.681767,
+            60.20605
+          ],
+          "name": "Tuomarila",
+          "shortCode": "TRL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.63865,
+            60.918387
+          ],
+          "name": "Turenki",
+          "shortCode": "TU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.252945,
+            60.453985
+          ],
+          "name": "Turku asema",
+          "shortCode": "TKU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.226894,
+            60.434245
+          ],
+          "name": "Turku satama",
+          "shortCode": "TUS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.722323,
+            62.605349
+          ],
+          "name": "Tuuri",
+          "shortCode": "TUU",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            35.8928,
+            56.8352
+          ],
+          "name": "Tver",
+          "shortCode": "TVE",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            30.241497,
+            62.912482
+          ],
+          "name": "Uimaharju",
+          "shortCode": "UIM",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.413565,
+            64.758926
+          ],
+          "name": "Utajärvi",
+          "shortCode": "UTJ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.993966,
+            60.927722
+          ],
+          "name": "Uusikylä",
+          "shortCode": "UKÄ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            26.842702,
+            64.558015
+          ],
+          "name": "Vaala",
+          "shortCode": "VAA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            21.621824,
+            63.097786
+          ],
+          "name": "Vaasa",
+          "shortCode": "VS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.303201,
+            60.863835
+          ],
+          "name": "Vainikkala asema",
+          "shortCode": "VNA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.87583,
+            60.222028
+          ],
+          "name": "Valimo",
+          "shortCode": "VMO",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.887664,
+            61.349519
+          ],
+          "name": "Vammala",
+          "shortCode": "VMA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.847966,
+            60.286119
+          ],
+          "name": "Vantaankoski",
+          "shortCode": "VKS",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            27.873415,
+            62.312389
+          ],
+          "name": "Varkaus",
+          "shortCode": "VAR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.843716,
+            60.295054
+          ],
+          "name": "Vehkala",
+          "shortCode": "VEH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.993624,
+            64.48451
+          ],
+          "name": "Vihanti",
+          "shortCode": "VTI",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.029282,
+            62.380739
+          ],
+          "name": "Vihtari",
+          "shortCode": "VIH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.770683,
+            61.211787
+          ],
+          "name": "Viiala",
+          "shortCode": "VIA",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.237166,
+            62.641687
+          ],
+          "name": "Viinijärvi",
+          "shortCode": "VNJ",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            28.751409,
+            60.716073
+          ],
+          "name": "Viipuri",
+          "shortCode": "VYB",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            25.833724,
+            60.946379
+          ],
+          "name": "Villähde",
+          "shortCode": "VLH",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.506956,
+            62.025888
+          ],
+          "name": "Vilppula",
+          "shortCode": "VLP",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            29.99331,
+            63.152636
+          ],
+          "name": "Vuonislahti",
+          "shortCode": "VSL",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            22.532729,
+            62.917801
+          ],
+          "name": "Ylistaro",
+          "shortCode": "YST",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            23.682508,
+            66.324438
+          ],
+          "name": "Ylitornio",
+          "shortCode": "YTR",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.540593,
+            64.071898
+          ],
+          "name": "Ylivieska",
+          "shortCode": "YV",
+          "passengerTraffic": true
+        },
+        {
+          "location": [
+            24.064036,
+            62.553265
+          ],
+          "name": "Ähtäri",
+          "shortCode": "ÄHT",
+          "passengerTraffic": true
+        }
+      ]
+    }
+  }
