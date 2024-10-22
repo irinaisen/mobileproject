@@ -1,48 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Platform, PermissionsAndroid, TouchableOpacity, Text } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE, Geojson } from 'react-native-maps';
+import { StyleSheet, View, Platform, PermissionsAndroid, TouchableOpacity, Text, Button } from 'react-native';
+import MapView, { Marker, PROVIDER_GOOGLE, Geojson, Callout } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import { Dropdown } from 'react-native-element-dropdown';
 //import geojson from '../static/station'
 
-const stations = require('../static/wgs84assat.json')
+const stations = require('../static/stations.json')
+let temp = 0;
 
-const MapWithMarkers = () => {
+const MapWithMarkers = (props) => {
   const [markers, setMarkers] = useState([
-    { id: 1, title: 'Marker 1', description: 'Current Station', latitude: 37.78825, longitude: -122.4324, active: false, color: 'red' },
-    { id: 2, title: 'Marker 2', description: 'Other Station', latitude: 37.75825, longitude: -122.4624, active: true, color: 'green' },
+    { id: "code1", title: 'Marker 1', description: 'Current Station', latitude: 37.78825, longitude: -122.4324, active: false, color: 'red' },
+    { id: "code2", title: 'Marker 2', description: 'Other Station', latitude: 37.75825, longitude: -122.4624, active: true, color: 'green' },
   ]);
   const [coords, setCoords] = useState({ lat: 37.78825, lon: -122.4324 })
+
+  temp++
+  console.log(temp)
 
   useEffect(() => {
 
     const loadData = () => {
 
-      const markerdata = stations.features.map(({ properties, geometry }) => {
+      const markerdata = stations.data.stations.map((station) => {
         return {
-          id: properties.id,
-          title: properties.name,
+          id: station.shortCode,
+          title: station.name,
           description: 'Station',
-          latitude: geometry.coordinates[1],
-          longitude: geometry.coordinates[0],
+          latitude: station.location[1],
+          longitude: station.location[0],
           active: false,
           color: 'red'
         }
       })
       setMarkers(markerdata)
     }
-    console.log(markers)
     loadData()
 
   }, [])
 
   const setActiveStation = (_id) => {
+    let marker_
     const newMarkers = markers.map((marker) => {
       let a;
       let col;
+      
       if (marker.id === _id) {
         a = true;
         col = 'green'
+        marker_ = marker
         
       }
       else {
@@ -52,8 +58,9 @@ const MapWithMarkers = () => {
       return { ...marker, active: a, color: col }
     }
     );
-    console.log(markers)
+    
     setMarkers(newMarkers)
+    console.log(marker_)
   }
 
   const requestLocationPermission = async () => {
@@ -102,15 +109,23 @@ const MapWithMarkers = () => {
         }}
         showsUserLocation={true}
       >
+      
         {markers.map(marker => (
           <Marker
             key={marker.id}
             coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
             title={marker.title}
             description={marker.description}
-            onSelect={() => setActiveStation(marker.id)}
             pinColor={marker.color}
-          />
+            tracksViewChanges={true}
+            onCalloutPress={() => {
+              // This selects the station and takes user back to home screen
+              props.onMarkerSelect(marker.id, marker.title)}}
+          >
+            <Callout>
+              <CustomCalloutView stationName={marker.title}/>
+          </Callout>
+          </Marker>
         ))}
 
       </MapView>
@@ -118,6 +133,15 @@ const MapWithMarkers = () => {
     </View>
   );
 };
+
+
+const CustomCalloutView = (props) => {
+  return (
+    <View>
+      <Text>Select {props.stationName}</Text>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
