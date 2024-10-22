@@ -40,12 +40,12 @@ import React, { useState, useEffect } from 'react';
   const renderTrainItem = ({ item }) => (
     <View style={styles.trainItem}>
       <Text style={styles.trainText}>{item.trainType} {item.trainNumber}</Text>
+      <Text style={styles.trainText}>{item.departureStation}-{item.destinationStation}</Text> 
       {item.timetable.map((time, index) => (
         <View key={index}>
           <Text style={styles.trainText}>{time.type}</Text>
           <Text style={styles.trainText}>Raide: {time.commercialTrack}</Text>
           <Text style={styles.trainText}>Aikataulu: {time.scheduledTime}. {time.status}</Text>
-          {/* <Text style={styles.trainText}></Text> */}
           <Text style={styles.trainText}>-----------------------------</Text>
         </View>
       ))}
@@ -86,6 +86,7 @@ import React, { useState, useEffect } from 'react';
       flex: 1,
       paddingTop: 50,
       paddingHorizontal: 16,
+      paddingBottom: 80
     },
     dropdown: {
       margin: 16,

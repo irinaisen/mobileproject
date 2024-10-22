@@ -6,11 +6,12 @@ import {Text, Animated, PanResponder, StyleSheet, View } from "react-native";
         try{
             let response=await fetch("https://rata.digitraffic.fi/api/v1/metadata/stations");
             let json=await response.json();
+            // Mappaa aseman nimen ja asemakoodin
             const parsitutAsemat = json.map(station => ({
                 label: station.stationName,
                 value: station.stationShortCode
             }))
-            console.log(parsitutAsemat)
+            //console.log(parsitutAsemat)
             return parsitutAsemat
         }
         catch(error){
@@ -33,7 +34,7 @@ const junienTiedot=async()=>{
     }
     }
 
-    // Aktiivisten junien seuranta (/live-trains)
+    // Aktiivisten junien seuranta (/live-trains). Ottaa parametriksi dropdownista valitun aseman lyhenteen
     const liveTrains=async(asema)=>{
         try{
             let response=await fetch("https://rata.digitraffic.fi/api/v1/live-trains/station/"+ asema);
@@ -41,56 +42,64 @@ const junienTiedot=async()=>{
 
             // Filtteröi pois "turhat" junat. Esimerkiksi rahtijunat ym. jotka ei liity matkustamiseen
             const suodataJunat = json.filter(train =>
-                train.trainCategory === "Long-distance" || train.trainCategory === "Commuter" || train.trainCategory === "Shunting"
+                train.trainCategory === "Long-distance" || train.trainCategory === "Commuter" 
             );
 
             // Suodatetuista junista luodaan haluttu data ja palautetaan flatlistiin
-            const junadata = suodataJunat.map(train => ({
-                    key: train.trainNumber.toString(),
-                    trainNumber: train.trainNumber,
-                    trainType: train.trainType,
-                    timetable: train.timeTableRows
-                        .filter(row => row.stationShortCode === asema)  // Filter based on asema
-                        .map(row => {
-                            let status = "";
-
-                            if (typeof row.differenceInMinutes === "number"){
-                                if (row.differenceInMinutes > 0){
-                                    status = `Juna on myöhässä ${row.differenceInMinutes} minuuttia`
-                                } else if (row.differenceInMinutes === 0){
-                                    status = `Juna on aikataulussa`
-                                } else {
-                                    status = `Juna on etuajassa ${Math.abs(row.differenceInMinutes)} minuuttia`
-                                }
-                            } else {
-                                status = null;
-                            }
-                            return{
-                            type: row.type === "ARRIVAL" ? "Saapuva" : "Lähtevä",
-                            commercialTrack: row.commercialTrack,
-                            scheduledTime: formatTime(row.scheduledTime),
-                            status: status
-                            };
-                        })
-                    }));
-
+            const junadata = suodataJunat.map((train) => {
+                const timeTableRows = train.timeTableRows;
+          
+                // Hakee lähtö ja pääteasemat junille
+                const departureStation = timeTableRows.find((row) => row.type === "DEPARTURE")?.stationShortCode;
+                const destinationStation = timeTableRows
+                  .slice() // Luo kopion timeTableRoweista
+                  .reverse() // Päätepysäkkiä varten timeTableRowien järjestys käännetään, koska päätepysäkki tulee viimeisenä objektina.
+                  .find((row) => row.type === "ARRIVAL")?.stationShortCode; // Palauttaa ensimmäisen Arrival aseman lyhenteen 
+          
+                // Palauttaa järjestyksen alkuperäiseen muotoon
+                timeTableRows.reverse();
+          
+                return {
+                  key: train.trainNumber.toString(),
+                  trainNumber: train.trainNumber,
+                  trainType: train.trainType,
+                  departureStation: departureStation, 
+                  destinationStation: destinationStation, 
+                  timetable: timeTableRows
+                    .filter((row) => row.stationShortCode === asema) // Filtteröi rivit asematunnuksen mukaan 
+                    .map((row) => {
+                      let status = ""; 
+          
+                      // Check the differenceInMinutes and set status accordingly
+                      if (typeof row.differenceInMinutes === "number") {
+                        if (row.differenceInMinutes > 0) {
+                          status = `Juna on myöhässä ${row.differenceInMinutes} minuuttia`;
+                        } else if (row.differenceInMinutes === 0) {
+                          status = `Juna on aikataulussa`;
+                        } else {
+                          status = `Juna on etuajassa ${Math.abs(row.differenceInMinutes)} minuuttia`;
+                        }
+                      } else {
+                        status = "";
+                      }
+          
+                      return {
+                        type: row.type === "ARRIVAL" ? "Saapuva" : "Lähtevä", // Suomennos
+                        commercialTrack: row.commercialTrack, 
+                        scheduledTime: formatTime(row.scheduledTime), 
+                        status: status, 
+                      };
+                    }),
+                };
+              });
+              console.log("Generated junadata:", JSON.stringify(junadata, null, 2));
+              // Poistaa ylimääräiset timetablerowit, ettei väliasemilta tule kahta tietoa. 
+              junadata.forEach((train) => {
+                if (train.timetable.length > 1) {
+                    train.timetable = [train.timetable[0]]; 
+                }
+            });
             return junadata;
-
-            // json.forEach(train => {
-            //     const trainNumber = train.trainNumber;
-            //     const trainType = train.trainType;
-
-            //     train.timeTableRows.forEach(row => {
-            //         const commercialTrack = row.commercialTrack;
-            //         const actualTime = row.actualTime;
-
-            //         console.log(`train number: ${trainNumber}`);
-            //         console.log(`Train type: ${trainType}`);
-            //         console.log(`Commercial Track: ${commercialTrack}`);
-            //         console.log(`Actual Time: ${actualTime}`);
-            //     })
-            // })
-            //console.log(json);
         }
         catch(error){
             console.log(error)
