@@ -66,18 +66,23 @@ return (
       placeholderStyle={styles.placeholderStyle}
       selectedTextStyle={styles.selectedTextStyle}
       inputSearchStyle={styles.inputSearchStyle}
+      itemContainerStyle={styles.textItem}
+      searchPlaceholderTextColor='white'
+      itemTextStyle={styles.dropDownItem}
       iconStyle={styles.iconStyle}
       data={asemaDataValikkoon}
+      activeColor='green'
       search
       maxHeight={300}
       labelField="label" // Jos muuttaa niin pitää muuttaa myös stations funktioon!
       valueField="value" // Jos muuttaa niin pitää muuttaa myös stations funktioon!
-      placeholder="Select item"
+      placeholder="Select station"
       searchPlaceholder="Search..."
       value={value}
       onChange={(item) => {
         setValue(item.value);
-        selectStation(item.label, navigation)
+        // Alempi funktio navigoi heti valinnan jälkeen pääsivulle
+        //selectStation(item.label, navigation)
       }}
 
     />
@@ -97,49 +102,78 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+    backgroundColor: 'black'
   },
   dropdown: {
-    margin: 16,
+     backgroundColor: 'green',
+     color: 'white',
+    //margin: 16,
     height: 50,
-    backgroundColor: 'white',
-    borderRadius: 12,
+    borderColor: 'white',
     padding: 12,
-    shadowColor: '#000',
+    shadowColor: '#fff',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 20,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    shadowOpacity: 1,
+    shadowRadius: 5,
 
     elevation: 2,
+
   },
   icon: {
     marginRight: 5,
+    tintColor:'white'
   },
-  item: {
-    padding: 17,
+  dropDownItem: {
+    //padding: 17,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    //backgroundColor: 'black', 
+    color:'white'
   },
   textItem: {
     flex: 1,
     fontSize: 16,
+    backgroundColor: 'black',
+    color: 'white',
   },
   placeholderStyle: {
     fontSize: 16,
+
+    //backgroundColor: 'black',
+    color: 'white',
   },
   selectedTextStyle: {
     fontSize: 16,
+    color: 'white',
+    fontStyle: 'bold',
+    backgroundColor:'green'
   },
   iconStyle: {
     width: 20,
     height: 20,
+    color:'white',
+    tintColor: 'white'
+
   },
   inputSearchStyle: {
-    height: 40,
+    //height: 60,
     fontSize: 16,
+    //borderColor: 'white',
+    //borderRadius: 2,
+    backgroundColor: 'black',
+    color: 'white',
+    margin:0,
+    marginBottom:0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'black', 
+    color:'white',
+    backgroundColor: '#222',
   },
   trainText: {
     color: 'white'

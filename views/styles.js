@@ -13,7 +13,14 @@ import {
     container: {
       flex: 1,
       backgroundColor:"black",
-      color:"white"
+      color:"white",
+      
+    },
+    main: {
+      padding: 12,
+    },
+    heading: {
+       color: 'white', fontSize: 25 
     },
     formView:{
         flex:2,

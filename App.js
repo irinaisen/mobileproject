@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList, Image } from 'react-native';
 import { junienTiedot, liveTrains, trainLocations, stations } from './components/StaticApis';
 import MapWithMarkers from './components/Map';
-import { NavigationContainer, useRoute } from '@react-navigation/native';
+import { NavigationContainer, useRoute, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropdownComponent from './components/DropDownView';
 import { init } from './database/db';
@@ -17,7 +17,23 @@ AppRegistry.registerComponent(appName, () => App);
 
 //const route = useRoute();
 
+
 const Stack = createNativeStackNavigator();
+
+const headerStyle = () => {
+  
+  const options = {
+    headerTitleStyle: {
+    color: 'white'
+  },
+  headerStyle: {
+    backgroundColor: 'black'
+  },
+  headerLeft: BackBtn
+}
+  return options
+  
+}
 
 
 init()
@@ -33,6 +49,15 @@ const selectStation = (shortCode) => {
 
 }
 
+const BackBtn = () => {
+  const navigation = useNavigation()
+  return (
+    <TouchableOpacity onPress={() => {navigation.goBack()}}>
+      <Image style={{height:20, width: 40}} source={require('./assets/back.png')}></Image>
+    </TouchableOpacity>
+  )
+}
+
 const App = () => {
 
   const [station, setStation] = useState('')
@@ -42,8 +67,12 @@ const App = () => {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen1} />
+      <Stack.Navigator initialRouteName="Home"
+      screenOptions={headerStyle}
+      >
+        <Stack.Screen name="Home" component={HomeScreen1} options={{ 
+    headerLeft: (prop) => undefined// hide the header
+  }} />
         <Stack.Screen name="Map" component={MapScreen} />
         <Stack.Screen name="List" component={ListScreen} />
       </Stack.Navigator>
@@ -72,8 +101,8 @@ const HomeScreen1 = (props) => {
 
   return (
 
-    <View style={styles.container}>
-      <Text style={{ color: '#fff', fontSize: 20 }}>{selectedStation}</Text>
+    <View style={[styles.container, styles.main]}>
+      <Text style={styles.heading}>{selectedStation}</Text>
       <HomeScreen />
       <NavButtons params={props}></NavButtons>
     </View>
