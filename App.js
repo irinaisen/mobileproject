@@ -5,7 +5,7 @@ import MapWithMarkers from './components/Map';
 import { NavigationContainer, useRoute, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropdownComponent from './components/DropDownView';
-import { init } from './database/db';
+import { addStation, init } from './database/db';
 import styles from './views/styles'
 import HomeScreen from './components/HomeScreen';
 import NavButtons from './components/NavButtons';
@@ -15,8 +15,30 @@ import { name as appName } from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 
-//const route = useRoute();
+init()
+.then(()=>{
+    console.log('Database creation succeeded!');
+}).catch((err)=>{
+  console.log('Database IS NOT initialized! '+err);
+});
 
+//const route = useRoute();
+const _stations = require('./static/stations.json')
+
+const addStationsToDB = async () =>_stations.data.stations.forEach(station => {
+
+  let s = {
+    name: station.name, 
+    shortCode: station.shortCode,
+    location: station.location, 
+    favourite: 0
+
+  }
+  addStation(s)
+  console.log(s)
+});
+
+addStationsToDB()
 
 const Stack = createNativeStackNavigator();
 

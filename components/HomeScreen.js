@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList } from 'react-native';
-import {init, addStation, updateStation, deleteStation, fetchAllStations} from '../database/db';
+import {init, addStation, updateStation,fetchAllStations} from '../database/db';
 import styles from '../views/styles'
 import MapWithMarkers from '../components/Map';
 import {junienTiedot, liveTrains, trainLocations, stations} from '../components/StaticApis';
@@ -30,7 +30,7 @@ const HomeScreen = (props) => {
       //No need to do anything
     }
   }
-  async function deleteStationFromDb(){
+/*   async function deleteStationFromDb(){
     try{
       const dbResult = await deleteStation(2);
     }
@@ -40,15 +40,17 @@ const HomeScreen = (props) => {
     finally{
       //No need to do anything
     }
-  }
+  } */
   async function updateStationInDb(){
     try{
-      const dbResult = await updateStation(3, "Helsinki");
+      const dbResult = await updateStation("HKI", true);
+      console.log(dbResult)
     }
     catch(err){
       console.log(err);
     }
     finally{
+      console.log('updated station')
       //No need to do anything
     }
   }
@@ -67,7 +69,7 @@ const HomeScreen = (props) => {
       const dbResult = await fetchAllStations();
       console.log("dbResult readAllStation in App.js");
       console.log(dbResult);
-      setStationList(dbResult);
+      //setStationList(dbResult);
     }
     catch(err){
       console.log("Error: "+err);
