@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropdownComponent from './components/DropDownView';
 import { addStation, init } from './database/db';
 import styles from './views/styles'
-import HomeScreen from './components/HomeScreen';
+import HomeScreen1 from './components/HomeScreen';
 import NavButtons from './components/NavButtons';
 
 import { AppRegistry } from 'react-native';
@@ -101,36 +101,7 @@ const App = () => {
     </NavigationContainer>
   )
 }
-const HomeScreen1 = (props) => {
 
-
-  // Sets the station based on navigation input (from map or from list (TODO))
-  const [selectedStation, setSelectedStation] = useState('Asema');
-  console.log(selectedStation)
-
-  if (props.route.params) {
-    let { station } = props.route.params;
-    console.log(station)
-    if (station !== selectedStation) {
-      setSelectedStation(station)
-    }
-  }
-
-  else {
-    console.log(props.route.params)
-    console.log('no params')
-  }
-
-  return (
-
-    <View style={[styles.container, styles.main]}>
-      <Text style={styles.heading}>{selectedStation}</Text>
-      <HomeScreen />
-      <NavButtons params={props}></NavButtons>
-    </View>
-
-  )
-}
 
 const MapScreen = (props) => {
   return (

@@ -14,7 +14,7 @@ import {
       flex: 1,
       backgroundColor:"black",
       color:"white",
-      
+      paddingBottom: 100
     },
     main: {
       padding: 12,
@@ -73,7 +73,7 @@ import {
       backgroundColor: 'black',
       position: 'absolute',
       color: "white",
-      bottom: 0  
+      bottom: 0
     },
     navBtn: {
       height: 100,
@@ -81,5 +81,8 @@ import {
       flexGrow: 1,
       alignItems: 'center',
       justifyContent: 'center'
+    },
+    trainText: {
+      color: 'white'
     }
   });

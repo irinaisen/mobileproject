@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import { liveTrains, stations } from './StaticApis';
 
 
 const DropdownComponent = ({ navigation }) => {
   const [value, setValue] = useState(null); // Tallennetaan valittu dropdown valikon arvo
-  const [junaData, setJunaData] = useState([]); // Tallennetaan junatiedot flatlistiin.
+  const [junaData, setJunaData] = useState([]); // Tallennetaan junatiedot flatlistiä varten.
   const [asemaDataValikkoon, setAsemaData] = useState([]); // Tallennetaan asematiedot dropdown valikkoa varten
 
   // Hakee asematiedot dropdown valikkoon.
@@ -36,13 +35,29 @@ const DropdownComponent = ({ navigation }) => {
     }
   }, [value]);
 
-
-  const selectStation = (item, navigation) => {
-
+    // useEffect varmistaa ettei tyhjää asemaa tai junadataa lähetetä homeen
+    useEffect(() => {
+      if (junaData.length > 0 && value) {  // Tarkistaa että junaDatassa on sisältöä ja asema(value) on valittu
+        console.log(value, junaData); 
         navigation.navigate('Home', {
+          station: value, // Asematunnus
+          junadata: junaData  // junadata
+        });
+      }
+    }, [junaData, value, navigation]); // useEffect suoritetaan aina kun jokin muuttujista muuttuu
+  
+    const handleStationChange = (item) => {
+      setValue(item.value); // Set the station value
+    };
 
-          station: item
-    })}
+  // const selectStation = (item, junadata, navigation) => {
+  //   console.log(junadata)
+  //       navigation.navigate('Home', {
+  //         station: item,
+  //         junadata: junadata
+  //   });
+  // }
+
 // Flatlistin sisältö
 const renderTrainItem = ({ item }) => (
   <View style={styles.trainItem}>
@@ -74,15 +89,13 @@ return (
       activeColor='green'
       search
       maxHeight={300}
-      labelField="label" // Jos muuttaa niin pitää muuttaa myös stations funktioon!
-      valueField="value" // Jos muuttaa niin pitää muuttaa myös stations funktioon!
+      labelField="label"
+      valueField="value" 
       placeholder="Select station"
       searchPlaceholder="Search..."
       value={value}
       onChange={(item) => {
-        setValue(item.value);
-        // Alempi funktio navigoi heti valinnan jälkeen pääsivulle
-        //selectStation(item.label, navigation)
+        handleStationChange(item); 
       }}
 
     />

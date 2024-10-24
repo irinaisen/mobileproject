@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList } from 'react-native';
 import {init, addStation, updateStation,fetchAllStations} from '../database/db';
 import styles from '../views/styles'
@@ -18,6 +18,9 @@ const HomeScreen = (props) => {
 
   const [isInserted, setIsInserted]=useState(false);
   const [stationList, setStationList]=useState([]);
+  const [selectedStation, setSelectedStation] = useState('Asema');
+  const [junaData, setJunaData] = useState([]); // Tallennetaan junatiedot flatlistiä varten.
+
   async function saveStation(){
     try{
       const dbResult = await addStation("Helsinki");
@@ -78,38 +81,68 @@ const HomeScreen = (props) => {
       console.log("All stations are red - really?");
     }
   }
-  return (
-       <View style={styles.container}>
 
-       <Text style={styles.textStyle}>This is home</Text>
-        <View >
-      <   Button style={styles.buttonStyle} title='Junien tiedot' 
-            onPress={junienTiedot}/>
-          <Button style={styles.buttonStyle} title='Aktiivisten junien seuranta' 
-            onPress={() => liveTrains("HKI")}/>
-          <Button style={styles.buttonStyle} title='Junan sijainti' 
-            onPress={trainLocations}/>
-        </View>
-        <View style={styles.container}>
-          <Text style={styles.textStyle}>Saapuvat junat</Text>
-         
-          <Text style={styles.textStyle}> Aika</Text>
-          <Text style={styles.textStyle}> Juna</Text>
-          <Text style={styles.textStyle}> Raide {"\n"}{"\n"}</Text>
-      
-          <Text  style={styles.textStyle}>Aikaisemmat haut</Text>
-          <Button title="Save" onPress={()=>saveStation()} />
-          <Button title="Read" onPress={()=>readAllStation()} />
-          <Button title="Delete" onPress={()=>deleteStationFromDb()} />
-          <Button title="Update" onPress={()=>updateStationInDb()} />
-                 <FlatList
-          data={stationList}
-          renderItem={(item)=><View><Text  style={styles.textStyle}>{item.item.id} {item.item.station}</Text>
-          </View>}
-          />
-        </View>
-       
-      <NavButtons params={props}></NavButtons></View>
+  useEffect(() => {
+    console.log(junaData)
+    if (props.route.params) {
+      const { station, junadata } = props.route.params; // Tallentaa parametrina saadut arvot(Asema ja junadata) muuttujiin. 
+      if (station !== selectedStation) { // Tarkistaa onko saatu station-arvo eri kuin nykyinen asema.
+        setSelectedStation(station); // päivitetään selectedStation arvo
+      }
+      setJunaData(junadata); // Päivittää uudet junadatat muuttujaan
+    }
+  }, [props.route.params]); // Käynnistää useEffectin aina kun props.route.params muuttuu. 
+
+  const renderTrainItem = ({ item }) => (
+    <View style={styles.trainItem}>
+    <Text style={styles.trainText}>{item.trainType} {item.trainNumber}</Text>
+    {item.timetable.map((time, index) => (
+      <View key={index}>
+        <Text style={styles.trainText}>{time.type}</Text>
+        <Text style={styles.trainText}>Raide: {time.commercialTrack}</Text>
+        <Text style={styles.trainText}>Aikataulu: {time.scheduledTime}. {time.status}</Text>
+        {/* <Text style={styles.trainText}></Text> */}
+        <Text style={styles.trainText}>-------------------------------------------------------------------------------------------</Text>
+      </View>
+    ))}
+  </View>
+);
+  
+  return (
+
+    <View style={[styles.container, styles.main]}>
+      <Text style={styles.heading}>{selectedStation}</Text>
+      <FlatList
+        data={junaData}
+        keyExtractor={(item) => item.trainNumber.toString()}
+        renderItem={renderTrainItem}
+      />
+
+
+
+<View style={styles.container}>
+
+<Text style={styles.textStyle}>This is home</Text>
+
+   <Text style={styles.textStyle}>Saapuvat junat</Text>
+  
+   <Text style={styles.textStyle}> Aika</Text>
+   <Text style={styles.textStyle}> Juna</Text>
+   <Text style={styles.textStyle}> Raide {"\n"}{"\n"}</Text>
+
+   <Text  style={styles.textStyle}>Aikaisemmat haut</Text>
+   <Button title="Save" onPress={()=>saveStation()} />
+   <Button title="Read" onPress={()=>readAllStation()} />
+   <Button title="Delete" onPress={()=>deleteStationFromDb()} />
+   <Button title="Update" onPress={()=>updateStationInDb()} />
+          <FlatList
+   data={stationList}
+   renderItem={(item)=><View><Text  style={styles.textStyle}>{item.item.id} {item.item.station}</Text>
+   </View>}
+   />
+  </View>
+  <NavButtons params={props}></NavButtons>
+</View>    
   )
 }
 
