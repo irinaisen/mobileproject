@@ -5,7 +5,7 @@ import MapWithMarkers from './components/Map';
 import { NavigationContainer, useRoute, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropdownComponent from './components/DropDownView';
-import { addStation, init } from './database/db';
+import { addStation, init, updateStation } from './database/db';
 import styles from './views/styles'
 import HomeScreen1 from './components/HomeScreen';
 import NavButtons from './components/NavButtons';
@@ -35,7 +35,7 @@ const addStationsToDB = async () =>_stations.data.stations.forEach(station => {
 
   }
   addStation(s)
-  console.log(s)
+
 });
 
 addStationsToDB()
@@ -85,14 +85,13 @@ const App = () => {
   const [station, setStation] = useState('')
 
 
-
   return (
 
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home"
       screenOptions={headerStyle}
       >
-        <Stack.Screen name="Home" component={HomeScreen1} options={{ 
+        <Stack.Screen name="Home" component={ListScreen} options={{ 
     headerLeft: (prop) => undefined// hide the header
   }} />
         <Stack.Screen name="Map" component={MapScreen} />
@@ -102,15 +101,51 @@ const App = () => {
   )
 }
 
+const HomeScreen2 = () => {
+  // Sets the station based on navigation input (from map or from list (TODO))
+  const [selectedStation, setSelectedStation] = useState({name:'Asema', shortCode:'', favourite:false});
+
+  console.log(selectedStation)
+
+  if (props.route.params) {
+
+
+    let p = props.route.params;
+
+    if (p !== selectedStation) {
+      setSelectedStation(p)
+    }
+  }
+
+  else {
+    console.log(props.route.params)
+    console.log('no params')
+  }
+
+  return (
+
+    <View style={[styles.container, styles.main]}>
+      <Text style={styles.heading}>{selectedStation.name}</Text>
+      <Button title={selectedStation.favourite ? 'Remove from favourites':'Add to favourites'} onPress={() => {
+        updateStation(selectedStation.shortCode, !selectedStation.favourite)
+        setSelectedStation({...selectedStation, favourite: !selectedStation.favourite})
+      }}></Button>
+      <HomeScreen />
+      <NavButtons params={props}></NavButtons>
+    </View>
+
+  )
+}
 
 const MapScreen = (props) => {
   return (
     <View style={styles.container}>
-      <MapWithMarkers onMarkerSelect={(id, title) => {
+      <MapWithMarkers onMarkerSelect={(id, title, fav) => {
 
         props.navigation.navigate('Home', {
-          station: title,
-          shortCode: id
+          name: title,
+          shortCode: id,
+          favourite: fav
         })
       }} />
       <NavButtons params={props}></NavButtons>
@@ -121,7 +156,7 @@ const MapScreen = (props) => {
 
 const ListScreen = (props) => {
   return (
-    <View style={styles.container}><DropdownComponent navigation={props.navigation} />
+    <View style={styles.container}><DropdownComponent navigation={props.navigation} route={props.route} />
       <NavButtons params={props}></NavButtons>
     </View>
   )

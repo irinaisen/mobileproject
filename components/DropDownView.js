@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Button, Image } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { liveTrains, stations } from './StaticApis';
+import { init, addStation, updateStation, fetchAllStations, fetchStation } from '../database/db';
+import styles from '../views/styles'
 
 
-const DropdownComponent = ({ navigation }) => {
+const DropdownComponent = ({ navigation, route }) => {
   const [value, setValue] = useState(null); // Tallennetaan valittu dropdown valikon arvo
   const [junaData, setJunaData] = useState([]); // Tallennetaan junatiedot flatlistiä varten.
   const [asemaDataValikkoon, setAsemaData] = useState([]); // Tallennetaan asematiedot dropdown valikkoa varten
-
+  const [favourite, setFavourite] = useState(false)
+  const [selectedStation, setSelectedStation] = useState('Asema');
+  const [leavingTrains, setLeavingTrains] = useState([]); // Tallennetaan junatiedot flatlistiä varten.
+  const [comingTrains, setComingTrains] = useState([]);
   // Hakee asematiedot dropdown valikkoon.
   useEffect(() => {
     const asemat = async () => {
@@ -27,6 +32,7 @@ const DropdownComponent = ({ navigation }) => {
     if (value) {
       liveTrains(value) // funktio saa parametriksi dropdownista valitun aseman lyhenteen
         .then((data) => {
+          console.log(junaData)
           setJunaData(data); // Päivittää junatiedot muuttujaan
         })
         .catch((error) => {
@@ -35,20 +41,25 @@ const DropdownComponent = ({ navigation }) => {
     }
   }, [value]);
 
-    // useEffect varmistaa ettei tyhjää asemaa tai junadataa lähetetä homeen
-    useEffect(() => {
-      if (junaData.length > 0 && value) {  // Tarkistaa että junaDatassa on sisältöä ja asema(value) on valittu
-        console.log(value, junaData); 
-        navigation.navigate('Home', {
-          station: value, // Asematunnus
-          junadata: junaData  // junadata
-        });
-      }
-    }, [junaData, value, navigation]); // useEffect suoritetaan aina kun jokin muuttujista muuttuu
+ // useEffect suoritetaan aina kun jokin muuttujista muuttuu
+ const handleStationChange = async (value) => {
+    setValue(value);
+    const { favourite } = await fetchStation(value)
+    setFavourite(favourite) // Set the station value
+  };
   
-    const handleStationChange = (item) => {
-      setValue(item.value); // Set the station value
-    };
+  if (route.params) {
+    console.log('asdasdf')
+    const { name, shortCode } = route.params; // Tallentaa parametrina saadut arvot(Asema ja leavingTrains) muuttujiin. 
+    if (shortCode !== value) { // Tarkistaa onko saatu station-arvo eri kuin nykyinen asema.
+      setSelectedStation(name);
+      console.log('asdasdf')
+      handleStationChange(shortCode)// päivitetään selectedStation arvo
+    }
+    // Päivittää uudet leavingTrainst muuttujaan
+  }
+
+ 
 
   // const selectStation = (item, junadata, navigation) => {
   //   console.log(junadata)
@@ -58,140 +69,67 @@ const DropdownComponent = ({ navigation }) => {
   //   });
   // }
 
-// Flatlistin sisältö
-const renderTrainItem = ({ item }) => (
-  <View style={styles.trainItem}>
-    <Text style={styles.trainText}>{item.trainType} {item.trainNumber}</Text>
-    {item.timetable.map((time, index) => (
-      <View key={index}>
-        <Text style={styles.trainText}>{time.type}</Text>
-        <Text style={styles.trainText}>Raide: {time.commercialTrack}</Text>
-        <Text style={styles.trainText}>Aikataulu: {time.scheduledTime}. {time.status}</Text>
-        {/* <Text style={styles.trainText}></Text> */}
-        <Text style={styles.trainText}>-----------------------------</Text>
-      </View>
-    ))}
-  </View>
-);
-
-return (
-  <View style={styles.container}>
-    <Dropdown
-      style={styles.dropdown}
-      placeholderStyle={styles.placeholderStyle}
-      selectedTextStyle={styles.selectedTextStyle}
-      inputSearchStyle={styles.inputSearchStyle}
-      itemContainerStyle={styles.textItem}
-      searchPlaceholderTextColor='white'
-      itemTextStyle={styles.dropDownItem}
-      iconStyle={styles.iconStyle}
-      data={asemaDataValikkoon}
-      activeColor='green'
-      search
-      maxHeight={300}
-      labelField="label"
-      valueField="value" 
-      placeholder="Select station"
-      searchPlaceholder="Search..."
-      value={value}
-      onChange={(item) => {
-        handleStationChange(item); 
-      }}
-
-    />
-    <FlatList
-      data={junaData}
-      renderItem={renderTrainItem}
-      keyExtractor={(item, index) => `${item.trainNumber}-${index}`}
-    />
-
-  </View>
-)};
 
 
+  // Flatlistin sisältö
+  return (
+    <View style={[styles.container, styles.main]}>
+      <Dropdown
+        style={styles.dropdown}
+        placeholderStyle={styles.placeholderStyle}
+        selectedTextStyle={styles.selectedTextStyle}
+        inputSearchStyle={styles.inputSearchStyle}
+        itemContainerStyle={styles.textItem}
+        searchPlaceholderTextColor='white'
+        itemTextStyle={styles.dropDownItem}
+        iconStyle={styles.iconStyle}
+        data={asemaDataValikkoon}
+        activeColor='green'
+        search
+        maxHeight={300}
+        labelField="label"
+        valueField="value"
+        placeholder={value !== null ? selectedStation : "Select station"}
+        searchPlaceholder="Search..."
+        value={value}
+        onChange={(item) => {
+          handleStationChange(item.value);
+        }}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 16,
-    backgroundColor: 'black'
-  },
-  dropdown: {
-     backgroundColor: 'green',
-     color: 'white',
-    //margin: 16,
-    height: 50,
-    borderColor: 'white',
-    padding: 12,
-    shadowColor: '#fff',
-    shadowOffset: {
-      width: 0,
-      height: 20,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 5,
+      />
+      <TouchableOpacity onPress={async () => {
+        const currentStatus = await fetchStation(value)
+        updateStation(value, !currentStatus.favourite)
+        setFavourite(!currentStatus.favourite)
+        //updateStation(value, )
+      }}><Text style={[styles.link, favourite ? { color: 'red' } : { color: '#c0b729' }]} >{favourite ? 'Remove from favourites' : 'Set as favourite'}</Text></TouchableOpacity>
+      <FlatList
+        data={junaData}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.trainItem}>
+              <Text style={[styles.trainText, styles.h3]}>{item.trainType} {item.trainNumber} {item.departureStation} - {item.destinationStation}</Text>
+              {item.timetable.map((time, index) => (
+                <View key={index} style={styles.trainDataRow}>
+                  <Text style={styles.trainText}>{time.type}</Text>
+                  <Text style={styles.trainText}>Raide: {time.commercialTrack}</Text>
+                  <Text style={styles.trainText}>Aikataulu: {time.scheduledTime}. <Text style={[time.status.includes("myöhässä") ? { color: 'red' } : { color: 'green' }, { fontWeight: 'bold' }]}>{time.status}</Text></Text>
 
-    elevation: 2,
+                </View>
+              ))}
+            </View>
+          )
 
-  },
-  icon: {
-    marginRight: 5,
-    tintColor:'white'
-  },
-  dropDownItem: {
-    //padding: 17,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    //backgroundColor: 'black', 
-    color:'white'
-  },
-  textItem: {
-    flex: 1,
-    fontSize: 16,
-    backgroundColor: 'black',
-    color: 'white',
-  },
-  placeholderStyle: {
-    fontSize: 16,
+        }}
+        keyExtractor={(item, index) => `${item.trainNumber}-${index}`}
+      />
 
-    //backgroundColor: 'black',
-    color: 'white',
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-    color: 'white',
-    fontStyle: 'bold',
-    backgroundColor:'green'
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-    color:'white',
-    tintColor: 'white'
+    </View>
+  )
+};
 
-  },
-  inputSearchStyle: {
-    //height: 60,
-    fontSize: 16,
-    //borderColor: 'white',
-    //borderRadius: 2,
-    backgroundColor: 'black',
-    color: 'white',
-    margin:0,
-    marginBottom:0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black', 
-    color:'white',
-    backgroundColor: '#222',
-  },
-  trainText: {
-    color: 'white'
-  }
-});
+
+
 
 
 export default DropdownComponent;

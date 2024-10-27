@@ -1,55 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Platform, PermissionsAndroid, TouchableOpacity, Text, Button } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, View, Platform, PermissionsAndroid, TouchableOpacity, Text, Button, Image } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Geojson, Callout } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import { Dropdown } from 'react-native-element-dropdown';
+import { fetchAllStations } from '../database/db';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import styles from '../views/styles'
+import { useIsFocused } from "@react-navigation/native";
+
 //import geojson from '../static/station'
 
-const stations = require('../static/stations.json')
+const stations = fetchAllStations()
+
 let temp = 0;
 
 const MapWithMarkers = (props) => {
+  
+  const mapRef = useRef(null)
+  const focused = useIsFocused()
   const [markers, setMarkers] = useState([
-    { id: "code1", title: 'Marker 1', description: 'Current Station', latitude: 37.78825, longitude: -122.4324, active: false, color: 'red' },
-    { id: "code2", title: 'Marker 2', description: 'Other Station', latitude: 37.75825, longitude: -122.4624, active: true, color: 'green' },
+    { id: "code1", title: 'Marker 1', description: 'Current Station', latitude: 37.78825, longitude: -122.4324, active: false, favourite: 0, color: 'red' },
+    { id: "code2", title: 'Marker 2', description: 'Other Station', latitude: 37.75825, longitude: -122.4624, active: true, favourite: 0, color: 'green' },
   ]);
-  const [coords, setCoords] = useState({ lat: 37.78825, lon: -122.4324 })
+  const [coords, setCoords] = useState({ lat: 60.17045989432245, lon: 24.947824675734193 })
+  const [zoomLevel, setZoomLevel] = useState(10)
 
-  temp++
-  console.log(temp)
+  
 
   useEffect(() => {
 
     const loadData = () => {
-
-      const markerdata = stations.data.stations.map((station) => {
+      const markerdata = stations._j.map((station) => {
         return {
           id: station.shortCode,
           title: station.name,
           description: 'Station',
-          latitude: station.location[1],
-          longitude: station.location[0],
+          latitude: station.lat,
+          longitude: station.lon,
           active: false,
-          color: 'red'
+          favourite: station.favourite,
+          color: station.favourite === 0 ? 'green' : '#c0b729',
         }
       })
       setMarkers(markerdata)
     }
     loadData()
 
-  }, [])
+    // TODO; make the useEffect so that favourite stations update
+  }, [focused])
+
+  useEffect(() => {
+    const getZoom = async() => {
+      const { zoom } = await mapRef.current.getCamera();
+      setZoomLevel(zoom)
+      console.log(zoomLevel)
+  }
+  getZoom()
+
+},[])
 
   const setActiveStation = (_id) => {
     let marker_
     const newMarkers = markers.map((marker) => {
       let a;
       let col;
-      
+
       if (marker.id === _id) {
         a = true;
         col = 'green'
         marker_ = marker
-        
+
       }
       else {
         a = false
@@ -58,9 +77,8 @@ const MapWithMarkers = (props) => {
       return { ...marker, active: a, color: col }
     }
     );
-    
+
     setMarkers(newMarkers)
-    console.log(marker_)
   }
 
   const requestLocationPermission = async () => {
@@ -94,39 +112,71 @@ const MapWithMarkers = (props) => {
     );
   };
 
+  const getMarkerSize = () => {
+    if (zoomLevel > 15) return { flex:1,overflow:'visible',width: 38, height: 50 };
+    if (zoomLevel > 10) return { flex:1,overflow:'visible',width: 30, height: 40 };
+    if (zoomLevel > 8) return { flex:1,overflow:'visible',width: 23, height: 30};
+    return { flex:1,overflow:'visible',width: 23, height: 30};
+  };
 
   return (
-    <View  style={styles.container}>
+    <View style={styles.container}>
 
       <MapView
+      ref={mapRef}
+      onRegionChangeComplete={async()=>{
+        const { zoom } = await mapRef.current.getCamera();
+        setZoomLevel(zoom)
+      }}
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={{
-          latitude: 60.17045989432245,
-          longitude: 24.947824675734193,
-          latitudeDelta: 11.83708,
-          longitudeDelta: 7.66028,
+          latitude: coords.lat,
+          longitude: coords.lon,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
         }}
         showsUserLocation={true}
+        
       >
-      
-        {markers.map(marker => (
+
+        {markers.map(marker =>
           <Marker
+            anchor={{ x: 0.5, y: 0.5 }}
             key={marker.id}
             coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
             title={marker.title}
             description={marker.description}
-            pinColor={marker.color}
-            tracksViewChanges={true}
+  
+            //style={{flex:1}}
+            //tracksViewChanges={true}
             onCalloutPress={() => {
               // This selects the station and takes user back to home screen
-              props.onMarkerSelect(marker.id, marker.title)}}
+              props.onMarkerSelect(marker.id, marker.title, marker.favourite)
+            }}
+
+
+            //icon={require('../assets/marker.png')}
+            //style={{ width: 10, height: 10}}
+            //resizeMode="contain"
+
           >
+          <Image
+          
+          source={require('../assets/marker.png')}
+            height={zoomLevel*3}
+            width={zoomLevel*3}
+            style={{width:zoomLevel*3, height:zoomLevel*3}}
+          tintColor={marker.color}
+          resizeMethod='auto'
+          resizeMode='contain'
+           // Adjust the width and height as needed
+        />
             <Callout>
-              <CustomCalloutView stationName={marker.title}/>
-          </Callout>
+              <CustomCalloutView stationName={marker.title} />
+            </Callout>
           </Marker>
-        ))}
+        )}
 
       </MapView>
       <TouchableOpacity onPress={requestLocationPermission} style={styles.locBtn}><Text style={styles.btnText}>Use Location</Text></TouchableOpacity>
@@ -136,61 +186,13 @@ const MapWithMarkers = (props) => {
 
 
 const CustomCalloutView = (props) => {
+
+
   return (
-    <View>
-      <Text>Select {props.stationName}</Text>
+    <View style={{minWidth: 100, backgroundColor:'green', borderRadius: 10, padding:10, margin:10}}>
+      <Text style={styles.btnText}>Select</Text><Text style={[styles.btnText, styles.selectedTextStyle]}>{props.stationName}</Text>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1
-    /*justifyContent: 'flex-start',
-    alignItems: 'center'*/
-  },
-  map: {
-    height: 700,
-    flex: 1
-
-  },
-  placeholderStyle: {
-    fontSize: 16,
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-  },
-  dropdown: {
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-
-
-  },
-  locBtn: {
-    position: 'absolute',
-    bottom: 50,
-    backgroundColor: 'green',
-    color: 'white',
-    padding: 10,
-    borderRadius: 10,
-  },
-  btnText:
-  {
-    color: 'white'
-  }
-
-});
 
 export default MapWithMarkers;
