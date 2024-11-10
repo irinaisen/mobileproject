@@ -5,6 +5,7 @@ const app = express();
 app.use(express.json());
 
 
+
     const bodyParser = require('body-parser');
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +28,8 @@ app.use(express.json());
     }
     );
     
+
+
     //URI to static files in folder 'views' is 'html'
     //e.g. http://some.server.sw/html/form.html points to file form.html in views folder
     app.use("/html", express.static('views'));
