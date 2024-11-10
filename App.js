@@ -80,6 +80,10 @@ const BackBtn = () => {
   )
 }
 
+
+
+
+
 const App = () => {
 
   const [station, setStation] = useState('')
@@ -130,12 +134,14 @@ const HomeScreen2 = () => {
         updateStation(selectedStation.shortCode, !selectedStation.favourite)
         setSelectedStation({...selectedStation, favourite: !selectedStation.favourite})
       }}></Button>
-      <HomeScreen />
+      <HomeScreen1 />
       <NavButtons params={props}></NavButtons>
     </View>
 
   )
 }
+
+
 
 const MapScreen = (props) => {
   return (
