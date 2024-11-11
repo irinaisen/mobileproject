@@ -11,8 +11,6 @@ import { useIsFocused } from "@react-navigation/native";
 
 const stations = fetchAllStations()
 
-let temp = 0;
-
 const MapWithMarkers = (props) => {
   
   const mapRef = useRef(null)
@@ -28,6 +26,7 @@ const MapWithMarkers = (props) => {
 
   useEffect(() => {
 
+    // Load stationmarkers
     const loadData = () => {
       const markerdata = stations._j.map((station) => {
         return {
@@ -52,12 +51,11 @@ const MapWithMarkers = (props) => {
     const getZoom = async() => {
       const { zoom } = await mapRef.current.getCamera();
       setZoomLevel(zoom)
-      console.log(zoomLevel)
   }
   getZoom()
 
 },[])
-
+/* 
   const setActiveStation = (_id) => {
     let marker_
     const newMarkers = markers.map((marker) => {
@@ -79,7 +77,7 @@ const MapWithMarkers = (props) => {
     );
 
     setMarkers(newMarkers)
-  }
+  } */
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
@@ -147,18 +145,10 @@ const MapWithMarkers = (props) => {
             coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
             title={marker.title}
             description={marker.description}
-  
-            //style={{flex:1}}
-            //tracksViewChanges={true}
             onCalloutPress={() => {
               // This selects the station and takes user back to home screen
               props.onMarkerSelect(marker.id, marker.title, marker.favourite)
             }}
-
-
-            //icon={require('../assets/marker.png')}
-            //style={{ width: 10, height: 10}}
-            //resizeMode="contain"
 
           >
           <Image
@@ -184,10 +174,8 @@ const MapWithMarkers = (props) => {
   );
 };
 
-
+// Custom view to be opened when a user clicks marker
 const CustomCalloutView = (props) => {
-
-
   return (
     <View style={{minWidth: 100, backgroundColor:'green', borderRadius: 10, padding:10, margin:10}}>
       <Text style={styles.btnText}>Select</Text><Text style={[styles.btnText, styles.selectedTextStyle]}>{props.stationName}</Text>

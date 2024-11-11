@@ -6,7 +6,6 @@ import { openDatabase } from 'react-native-sqlite-storage';
 
 const db = openDatabase({ name: "station.db" });
 var tableName="stations";
-console.log("database is" +db)
 //method returns a Promise - in the calling side .then(...).then(...)....catch(...) can be used
 export const init=()=>{
     const promise=new Promise((resolve, reject)=>{
@@ -122,13 +121,12 @@ export const fetchAllStations=()=>{
                     //And add all the items of the result (database rows/records) into that table
                     for (let i = 0; i < result.rows.length; i++){
                         items.push(result.rows.item(i));//The form of an item is {"breed": "Pike", "id": 1, "weight": 5000}
-                        console.log(result.rows.item(i));//For debugging purposes to see the data in console window
+                    
                     }
                     //For debugging purposes to see the data in console window
                     resolve(items);//The data the Promise will have when returned
                 },
                 (tx,err)=>{
-                    console.log("Err");
                     console.log(err);
                     reject(err);
                 }
@@ -148,14 +146,13 @@ export const fetchStation=(shortCode)=>{
                     //And add all the items of the result (database rows/records) into that table
                     for (let i = 0; i < result.rows.length; i++){
                         items.push(result.rows.item(i));//The form of an item is {"breed": "Pike", "id": 1, "weight": 5000}
-                        console.log(result.rows.item(i));//For debugging purposes to see the data in console window
+        
                     }
                     //For debugging purposes to see the data in console window
                     resolve(items[0]);//The data the Promise will have when returned
                 
                 },
                 (tx,err)=>{
-                    console.log("Err");
                     console.log(err);
                     reject(err);
                 }

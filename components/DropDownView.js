@@ -32,7 +32,7 @@ const DropdownComponent = ({ navigation, route }) => {
     if (value) {
       liveTrains(value) // funktio saa parametriksi dropdownista valitun aseman lyhenteen
         .then((data) => {
-          console.log(junaData)
+          //console.log(junaData)
           setJunaData(data); // Päivittää junatiedot muuttujaan
         })
         .catch((error) => {
@@ -49,27 +49,15 @@ const DropdownComponent = ({ navigation, route }) => {
   };
   
   if (route.params) {
-    console.log('asdasdf')
+
     const { name, shortCode } = route.params; // Tallentaa parametrina saadut arvot(Asema ja leavingTrains) muuttujiin. 
     if (shortCode !== value) { // Tarkistaa onko saatu station-arvo eri kuin nykyinen asema.
       setSelectedStation(name);
-      console.log('asdasdf')
+
       handleStationChange(shortCode)// päivitetään selectedStation arvo
     }
     // Päivittää uudet leavingTrainst muuttujaan
   }
-
- 
-
-  // const selectStation = (item, junadata, navigation) => {
-  //   console.log(junadata)
-  //       navigation.navigate('Home', {
-  //         station: item,
-  //         junadata: junadata
-  //   });
-  // }
-
-
 
   // Flatlistin sisältö
   return (
@@ -98,10 +86,13 @@ const DropdownComponent = ({ navigation, route }) => {
 
       />
       <TouchableOpacity onPress={async () => {
+        // Get current status from db
         const currentStatus = await fetchStation(value)
+        // Update status
         updateStation(value, !currentStatus.favourite)
+        // Toggle favourite
         setFavourite(!currentStatus.favourite)
-        //updateStation(value, )
+
       }}><Text style={[styles.link, favourite ? { color: 'red' } : { color: '#c0b729' }]} >{favourite ? 'Remove from favourites' : 'Set as favourite'}</Text></TouchableOpacity>
       <FlatList
         data={junaData}

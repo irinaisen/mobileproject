@@ -96,9 +96,10 @@ app.use(express.json());
         readall().then(z=>res.send(z));
     });
 
-    app.get('/getallcomment', (req, res) => {
-        readallComment().then(z=>res.send(z));
-    });
+    app.get('/getallweather', (req, res) => {
+      //   readall().then(z=>res.send(z));
+      res.send('Helsinki 11.11.2024. Pilvistä, sateista.');
+     });
     
     app.delete('/deleteoneweather/:id', (req, res) => {
         const id=req.params['id'];

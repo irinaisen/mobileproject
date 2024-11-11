@@ -7,7 +7,7 @@ const NavButtons=({params})=>{
       <View style={styles.navbuttonstyle}>
         <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("Home")}><Text style={styles.textStyle}>Home</Text></TouchableOpacity>
         <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("Map")}><Text style={styles.textStyle}>Map</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("List")}><Text style={styles.textStyle}>Stations</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.navBtn} onPress={()=>params.navigation.navigate("Weather")}><Text style={styles.textStyle}>Weather</Text></TouchableOpacity>
       </View>
     );
   }
