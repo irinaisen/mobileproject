@@ -16,7 +16,7 @@ app.use(express.json());
     
     // var MongoClient = require('mongodb').MongoClient;
     const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-     var uri="mongodb+srv://irina20103:VRTrains@cluster0.muup47x.mongodb.net/trains?retryWrites=true&w=majority&appName=Cluster0";
+     var uri="mongodb+srv://irina20103:VRTrains@cluster0.muup47x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
     
     const client = new MongoClient(uri,  {
